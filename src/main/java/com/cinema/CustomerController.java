@@ -109,26 +109,32 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
     }
 
     @RequestMapping(value = "/registration")
-    public ModelAndView listEmployees(@ModelAttribute("customer") Customer customer)
+    public ModelAndView listEmployees(@ModelAttribute("user") User user)
     {
         ModelAndView model = new ModelAndView("registration");
-        List<Customer> customerList = customerDAO.getAllCustomers();
-        System.out.println(customerList);
-        model.addObject("customerList", customerList);
+        List<User> userList = customerDAO.getAllUsers();
+        System.out.println(userList);
+        model.addObject("userList", userList);
         return model;
     }
     
     @RequestMapping(value = "/studentHome")
-    public ModelAndView studentHome(@ModelAttribute("customer") Customer customer)
+    public ModelAndView studentHome(@ModelAttribute("student") Student student)
     {
         ModelAndView model = new ModelAndView("studentHome");
+        List<Student> studentList = customerDAO.getAllStudents();
+        System.out.println(studentList);
+        model.addObject("student", studentList);
         return model;
     }
     
     @RequestMapping(value = "/studentDetail")
-    public ModelAndView studentDetail(@ModelAttribute("customer") Customer customer)
+    public ModelAndView studentDetail(@ModelAttribute("student") Student student)
     {
         ModelAndView model = new ModelAndView("studentDetail");
+        Student studentList = customerDAO.getStudentById(2);
+        System.out.println(studentList);
+        model.addObject("student", studentList);
         return model;
     }
     @RequestMapping(value = "/inputStudentDetail")

@@ -244,31 +244,26 @@
                     </div>
                     <br/>
                     <div class="container border rounded ">
-                        <form class="form-group" action="" method="">
-                            <c:forEach var="std" items="${student}">
-                                <br/>
                                 <h3 class="modal-title">Student Name </h3>
-                                <h5>${std.name}</h5>
+                                <h5>${student.name}</h5>
                                 <h3 class="modal-title">Father Name </h3>
-                                <h5>${std.fatherName}</h5>
+                                <h5>${student.fatherName}</h5>
                                 <h3 class="modal-title">Roll No </h3>
-                                <h5>${std.rollNo}</h5>
+                                <h5>${student.rollNo}</h5>
                                 <h3 class="modal-title">Gender </h3>
-                                <h5>${std.gender}</h5>
+                                <h5>${student.gender}</h5>
                                 <h3 class="modal-title">Date Of Birth</h3>
-                                <h5>${std.dateOfBirth}</h5>
+                                <h5>${student.dateOfBirth}</h5>
                                 <h3 class="modal-title">Age</h3>
-                                <h5>${std.age}</h5>
+                                <h5>${student.age}</h5>
                                 <h3 class="modal-title">Mobile No</h3>
-                                <h5>${std.mobileNo}</h5>
+                                <h5>${student.mobileNo}</h5>
                                 <h3 class="modal-title">Class</h3>
-                                <h5>${std.class}</h5>
+                                <h5>${student.class}</h5>
                                 <h3 class="modal-title">Fee Status</h3>
-                                <h5>${std.fee}</h5>
+                                <h5>${student.fee}</h5>
                                 <h3 class="modal-title">Study Group</h3>
-                                <h5>${std.studyGroup}</h5>
-                            </c:forEach>
-                        </form>
+                                <h5>${student.studyGroup}</h5>
                     </div>
                     <form:form method="post" action="/CinemaProject/submitFee" commandName="customer">
                      <form:input type="text" path="fee" placeholder="Enter Fee" style="height:35px;width:200px"/>

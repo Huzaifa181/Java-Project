@@ -257,12 +257,12 @@
                                             <th scope="col">Gender</th>
                                             <th scope="col">Date of Birth</th>
                                             <th scope="col">Mobile</th>
-
+											<th scope="col">Action</th>
                                         </tr> 
                                     </thead>
-                                    <c:forEach var="std" items="${students}">  
+                                    <c:forEach var="std" items="${student}">  
                                         <tr>
-                                            <td scope="row">${std.s_name}</td>
+                                            <td scope="row">${std.name}</td>
                                             <td>${std.gender}</td>
                                             <td>${std.dateOfBirth}</td>
                                             <td>${std.mobileNo}</td>

@@ -37,7 +37,7 @@ margin-bottom:30px;
 <div class="col-1">
 	<h3>Registration</h3>
 
-	<form:form method="post" action="/CinemaProject/home" commandName="customer">
+	<form:form method="post" action="/CinemaProject/home" commandName="user">
 	<div class="table-responsive">
 		<table class="table" style="width: 300px; margin:0px auto; border:none">
 			<tr style="display:flex;align-items:center">

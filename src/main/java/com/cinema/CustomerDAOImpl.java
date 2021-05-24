@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
+	private static final Object StudentID = null;
 	private JdbcTemplate jdbcTemplate;
     // JdbcTemplate setter
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate)
@@ -19,13 +20,13 @@ public class CustomerDAOImpl implements CustomerDAO{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // Saving a new Employee
-    public void saveCustomer(Customer customer)
+    // Saving a new User
+    public void saveUser(User user)
     {
-        String sql = "insert into customer values(?,?,?)";
+        String sql = "insert into students values(?,?,?)";
         System.out.println("dao called");
         jdbcTemplate.update(sql, new Object[]
-        { customer.getName(), customer.getEmail(), customer.getPassword()});
+        { user.getName(), user.getEmail(), user.getPassword()});
     }
 
     // Getting a particular Employee
@@ -73,6 +74,59 @@ public class CustomerDAOImpl implements CustomerDAO{
         return customerList;
     }
 
+ // Getting all the Employees
+    public List<Student> getAllStudents()
+    {
+        String sql = "select * from students";
+
+        List<Student> studentList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Student>>()
+        {
+            @Override
+            public List<Student> extractData(ResultSet rs) throws SQLException, DataAccessException
+            {
+                List<Student> list = new ArrayList<Student>();
+                while (rs.next())
+                {
+                	Student student = new Student();
+                	student.setName(rs.getString(1));
+                	student.setGender(rs.getString(2));
+                	student.setDateOfBirth(rs.getString(3));
+                	student.setMobileNo(rs.getString(4));
+                    list.add(student);
+                }
+                return list;
+            }
+        });
+        return studentList;
+    }
+    
+ // Getting a particular Student
+    public Student getStudentById(int id)
+    {
+        String sql = "select * from students where StudentID=?";
+        Student student = (Student) jdbcTemplate.queryForObject(sql, new Object[]
+        { StudentID }, new RowMapper<Student>()
+        {
+            @Override
+            public Student mapRow(ResultSet rs, int rowNum) throws SQLException 
+            {
+            	Student student = new Student();
+            	student.setName(rs.getString(1));
+            	student.setFatherName(rs.getString(2));
+            	student.setRollNo(rs.getString(3));
+            	student.setGender(rs.getString(4));
+            	student.setDateOfBirth(rs.getString(5));
+            	student.setAge(rs.getString(6));
+            	student.setMobileNo(rs.getString(7));
+            	student.setClassName(rs.getString(8));
+            	student.setFee(rs.getString(9));
+            	student.setstudyGroup(rs.getString(7));
+                return student;
+            }
+        });
+        return student;
+    }
+    
     // Updating a particular Employee
     public void updateCustomer(Customer customer)
     {
@@ -110,6 +164,18 @@ public class CustomerDAOImpl implements CustomerDAO{
         System.out.println("dao called");
         jdbcTemplate.update(sql, new Object[]
         { "hollywood", hollywoodMovie.getTitle(), hollywoodMovie.getDescription(), hollywoodMovie.getStartingDate(), hollywoodMovie.getEndingDate(), hollywoodMovie.getTime()});
+	}
+
+	@Override
+	public void saveCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
