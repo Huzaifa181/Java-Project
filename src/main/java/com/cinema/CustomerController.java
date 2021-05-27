@@ -50,22 +50,7 @@ public class CustomerController{
 //    {
 //    	return "addHollywoodMovies";
 //    }
-@RequestMapping(value = "/addHollywoodMovies",method={ RequestMethod.GET, RequestMethod.POST })
-public String manageHollywoodFilms(@ModelAttribute("movies") HollywoodMovies hollywoodMovie,Model model)
-{
-	model.addAttribute("movies", hollywoodMovie);
-	System.out.println(hollywoodMovie.getDescription());
-	AdminUI object = AdminUI.getInstance();
-	object.setBttnAddNewFilm("<a href=\"/CinemaProject/addHollywoodMovies\">Add Hollywood Movies</a><a href=\"/CinemaProject/addBollywoodMovies\">Add Bollywood Movies</a>");
-	object.setBookingLink("<a href=\"/bookings\">Manage Bookings</a>");
-	model.addAttribute("admin", object);
-	model.addAttribute("addHollywoodMovies", hollywoodMovie);
-	if(hollywoodMovie.getTitle()!=null) {
-		customerDAO.insertHollywoodMovies(hollywoodMovie);
-	}
-	
-	return "addHollywoodMovies";
-}
+
 @RequestMapping(value = "/addBollywoodMovies",method={ RequestMethod.GET, RequestMethod.POST })
 public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bollywoodMovie,Model model)
 {
@@ -117,7 +102,44 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
         model.addObject("userList", userList);
         return model;
     }
+    @RequestMapping(value = "/addHollywoodMovies",method={ RequestMethod.GET, RequestMethod.POST })
+    public String manageHollywoodFilms(@ModelAttribute("movies") HollywoodMovies hollywoodMovie,Model model)
+    {
+    	model.addAttribute("movies", hollywoodMovie);
+    	System.out.println(hollywoodMovie.getDescription());
+    	AdminUI object = AdminUI.getInstance();
+    	object.setBttnAddNewFilm("<a href=\"/CinemaProject/addHollywoodMovies\">Add Hollywood Movies</a><a href=\"/CinemaProject/addBollywoodMovies\">Add Bollywood Movies</a>");
+    	object.setBookingLink("<a href=\"/bookings\">Manage Bookings</a>");
+    	model.addAttribute("admin", object);
+    	model.addAttribute("addHollywoodMovies", hollywoodMovie);
+    	if(hollywoodMovie.getTitle()!=null) {
+    		customerDAO.insertHollywoodMovies(hollywoodMovie);
+    	}
+    	
+    	return "addHollywoodMovies";
+    }
+    @RequestMapping(value = "/studentDetail",method={  RequestMethod.POST })
     
+    public String saveFee(@ModelAttribute("submitfee") Fee fee,Model model)
+    {
+    	model.addAttribute("submitfee", fee);
+    	System.out.println("Fee"+fee.getFee());
+    	fee.setFee("80000");
+    	fee.setStudentId("2");
+    	Thread1 t1=new Thread1(fee);
+        Thread2 t2=new Thread2(fee);
+        t1.start();
+        t2.start();
+    	customerDAO.saveFee(fee);
+    	model.addAttribute("studentHome", fee);
+    	return "studentDetail";
+    }
+    @RequestMapping(value = "/fee")
+    public ModelAndView fee(@ModelAttribute("fee") Fee fee)
+    {
+        ModelAndView model = new ModelAndView("fee");
+        return model;
+    }
     @RequestMapping(value = "/studentHome")
     public ModelAndView studentHome(@ModelAttribute("student") Student student)
     {
@@ -128,13 +150,24 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
         return model;
     }
     
-    @RequestMapping(value = "/studentDetail")
-    public ModelAndView studentDetail(@ModelAttribute("student") Student student)
+    @RequestMapping(value = "/studentDetail/{studentId}", method = RequestMethod.GET)
+    public ModelAndView studentDetail(@ModelAttribute("submitFee") Student student,@PathVariable("studentId") String studentId)
     {
         ModelAndView model = new ModelAndView("studentDetail");
-        Student studentList = customerDAO.getStudentById(2);
-        System.out.println(studentList);
-        model.addObject("student", studentList);
+        Student studentList = customerDAO.getStudentById(studentId);
+        System.out.println("particular student"+studentList);
+        System.out.println("class"+studentList.getClassName());
+        model.addObject("name", studentList.getName());
+        model.addObject("fName", studentList.getFatherName());
+        model.addObject("rollNo", studentList.getRollNo());
+        model.addObject("gender", studentList.getGender());
+        model.addObject("dateOfBirth", studentList.getDateOfBirth());
+        model.addObject("age", studentList.getAge());
+        model.addObject("mobileNo", studentList.getMobileNo());
+        model.addObject("jamat", studentList.getClassName());
+        model.addObject("fee", studentList.getFee());
+        model.addObject("studyGroup", studentList.getStudyGroup());
+//        customerDAO.saveFee("2", "3444");
         return model;
     }
     @RequestMapping(value = "/inputStudentDetail")

@@ -120,15 +120,13 @@
                         <button class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Search</button>
                         <a class="mr-sm-2" href="login.htm" >Login</a>
                     </form>
-
-
                 </div>
             </nav>
             <!--jambutan-->
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">Welcome..</h1>
-                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    <h1 class="display-4">All Students</h1>
+                    
                 </div>
             </div>
             <!--body-->
@@ -268,7 +266,7 @@
                                             <td>${std.mobileNo}</td>
                                             <td>
                                              <button type="button" class="btn"> 
-                                                    <a href="/CinemaProject/studentDetail"> Details </a>
+                                                    <a href="/CinemaProject/studentDetail/${std.studentId}"> Details </a>
                                                 </button>
                                             </td>
                                         </tr>

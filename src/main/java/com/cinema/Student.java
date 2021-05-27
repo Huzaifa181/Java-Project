@@ -3,6 +3,7 @@ package com.cinema;
 public class Student {
 	private static final long serialVersionUID = -1280037900360314186L;
     private String name;
+    private String studentId;
     private String fatherName;
     private String rollNo;
     private String gender;
@@ -16,9 +17,10 @@ public class Student {
     {
         super();
     }
-    public Student(String name,String fatherName,String rollNo,String gender,String dateOfBirth, String age,  String mobileNo,  String className,  String fee,  String studyGroup)
+    public Student(String studentId,String name,String fatherName,String rollNo,String gender,String dateOfBirth, String age,  String mobileNo,  String className,  String fee,  String studyGroup)
     {
         super();
+        this.studentId=studentId;
         this.name = name;
         this.name = fatherName;
         this.rollNo	= rollNo;
@@ -29,6 +31,14 @@ public class Student {
         this.className = className;
         this.fee = fee;
         this.studyGroup= studyGroup;
+    }
+    public String getStudentId()
+    {
+        return studentId;
+    }
+    public void setStudentId(String studentId)
+    {
+        this.studentId = studentId;
     }
     public String getName()
     {

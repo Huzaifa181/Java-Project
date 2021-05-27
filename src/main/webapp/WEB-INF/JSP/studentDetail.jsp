@@ -38,6 +38,13 @@
                 float: left;
                 padding-top: 10px;
             }
+.span{
+margin-top:22px!important;
+margin-bottom:22px;
+}
+h5{
+margin-top:22px!important;
+margin-bottom:22px;}
 
             .month .next {
                 float: right;
@@ -95,8 +102,7 @@
         </style>
     </head>
     <body>
-
-        <%--<spring:url value="/logout" var="url_logout"/>--%>
+ <%--<spring:url value="/logout" var="url_logout"/>--%>
 
         <div class="container">
             <!--nav bar-->
@@ -127,8 +133,7 @@
             <!--jambutan-->
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">Welcome..</h1>
-                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    <h1 class="display-4">Particular Student</h1>     
                 </div>
             </div>
             <!--body-->
@@ -137,7 +142,7 @@
 
                     <div class="list-group">
                         <a href="index.htm" class="list-group-item list-group-item-action  ">Home</a>
-                        <a href="#" class="list-group-item list-group-item-action">About us</a>
+                        <a href="aboutus.htm" class="list-group-item list-group-item-action">About us</a>
                         <a href="#" class="list-group-item list-group-item-action">Contact</a>
                         <a href="notice_board.htm" class="list-group-item list-group-item-action">Notice</a>
                         <a href="all_teachers" class="list-group-item list-group-item-action ">Teachers Information</a>
@@ -200,7 +205,7 @@
                     </ul>
 
                 </div>
-                <div class="col-7 col-sm-12 col-md-7">
+                <div class="col-8 col-sm-12 col-md-8">
                     <div class="row">
                         <div class="col-4">
                             <div class="card text-center">
@@ -237,48 +242,59 @@
                                     <h1 class="card-title">5</h1>
                                 </div>
                                 <div class="card-footer text-muted">
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br/>
-                    <div class="container border rounded ">
-                                <h3 class="modal-title">Student Name </h3>
-                                <h5>${student.name}</h5>
-                                <h3 class="modal-title">Father Name </h3>
-                                <h5>${student.fatherName}</h5>
-                                <h3 class="modal-title">Roll No </h3>
-                                <h5>${student.rollNo}</h5>
-                                <h3 class="modal-title">Gender </h3>
-                                <h5>${student.gender}</h5>
-                                <h3 class="modal-title">Date Of Birth</h3>
-                                <h5>${student.dateOfBirth}</h5>
-                                <h3 class="modal-title">Age</h3>
-                                <h5>${student.age}</h5>
-                                <h3 class="modal-title">Mobile No</h3>
-                                <h5>${student.mobileNo}</h5>
-                                <h3 class="modal-title">Class</h3>
-                                <h5>${student.class}</h5>
-                                <h3 class="modal-title">Fee Status</h3>
-                                <h5>${student.fee}</h5>
-                                <h3 class="modal-title">Study Group</h3>
-                                <h5>${student.studyGroup}</h5>
-                    </div>
-                    <form:form method="post" action="/CinemaProject/submitFee" commandName="customer">
-                     <form:input type="text" path="fee" placeholder="Enter Fee" style="height:35px;width:200px"/>
-                    </form:form>
-                    
-                     <button type="button" class="btn">
-                          Submit Fee
-                     </button>
+
+                    <div class="row">
+                        <!--<div class="col-1"></div>-->
+                        <div class="col-12">                 
+                            <br/>
+                            <div  class="container row">
+                                <br/>
+								<div class="col-6">
+                                <h5 class="modal-title">Student Name </h5>
+                                <span class='span'>${name}</span>
+                                <h5 class="modal-title">Father Name </h5>
+                                <span class='span'>${fName}</span>
+                                <h5 class="modal-title">Roll No </h5>
+                                <span class='span'>${rollNo}</span>
+                                <h5 class="modal-title">Gender </h5>
+                                <span class='span'>${gender}</span>
+                                <h5 class="modal-title">Date Of Birth</h5>
+                                <span class='span'>${dateOfBirth}</span>
+                                <h5 class="modal-title">Age</h5>
+                                <span class='span'>${age}</span>
+                                <h5 class="modal-title">Mobile No</h5>
+                                <span class='span'>${mobileNo}</span>
+                                <h5 class="modal-title">Class</h5>
+                                <span class='span'>${jamat}</span>
+                                <h5 class="modal-title">Fee Status</h5>
+                                <span class='span'>${fee}</span>
+                                <h5 class="modal-title">Study Group</h5>
+                                <span class='span'>${studyGroup}</span>
+                                </div>
+                                <div class="col-6">
+                                <h5 class="modal-title">Submit Fee (If not submitted)</h5>
+                                <form:form method="post" action="/CinemaProject/studentDetail" commandName="submitfee" style="margin-bottom:100px;margin-top:30px;" name="myForm">
+    								<input style="padding-left:10px;margin-bottom:10px;" type="text" path="fee" placeholder="Enter Fee"/>
+								<input style="text-align:center" class="btn btn-lg" type="submit" value="Submit" style="width:60px"/>
+								</form:form>
+								</div>
+                            </div>
+                        </div>
+						
+         </div>
                 </div>
-                <div class="col-3 col-md-3">
+                
+                
+                <div class="col-2 col-md-2">
                     <!--clock-->
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-4">
-                            <canvas  id="canvas" width="220" height="220"
+                            <canvas  id="canvas" width="150" height="150"
                                      style="background-color:#1087dd;">
                             </canvas>
                         </div>
@@ -295,15 +311,17 @@
                                 </div>
                             </a>
                         </c:forEach> 
-                        <a class="list-group-item list-group-item-action " href="notice_board.htm">
+                        <a class="list-group-item list-group-item-action " href="notice_Board.htm">
                             <div>
-                                <small style="padding-left:120px">See More..</small>
+                                <small style="padding-left:40%">See More..</small>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
+       
+                   
         <script>
             var canvas = document.getElementById("canvas");
             var ctx = canvas.getContext("2d");

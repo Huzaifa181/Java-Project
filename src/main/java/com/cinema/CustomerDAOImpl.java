@@ -28,7 +28,15 @@ public class CustomerDAOImpl implements CustomerDAO{
         jdbcTemplate.update(sql, new Object[]
         { user.getName(), user.getEmail(), user.getPassword()});
     }
-
+ // Saving a Fee
+    public void saveFee(Fee fee)
+    {
+    	System.out.println(fee.getStudentId()+fee.getFee());
+        String sql = "insert into fee values(?,?)";
+        System.out.println("dao called");
+        jdbcTemplate.update(sql, new Object[]
+         { fee.getFee(),fee.getStudentId()});
+    }
     // Getting a particular Employee
     public Customer getCustomerById(String email)
     {
@@ -88,10 +96,11 @@ public class CustomerDAOImpl implements CustomerDAO{
                 while (rs.next())
                 {
                 	Student student = new Student();
-                	student.setName(rs.getString(1));
-                	student.setGender(rs.getString(2));
-                	student.setDateOfBirth(rs.getString(3));
-                	student.setMobileNo(rs.getString(4));
+                	student.setStudentId(rs.getString(1));
+                	student.setName(rs.getString(2));
+                	student.setGender(rs.getString(3));
+                	student.setDateOfBirth(rs.getString(4));
+                	student.setMobileNo(rs.getString(5));
                     list.add(student);
                 }
                 return list;
@@ -101,7 +110,7 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
     
  // Getting a particular Student
-    public Student getStudentById(int id)
+    public Student getStudentById(String StudentID)
     {
         String sql = "select * from students where StudentID=?";
         Student student = (Student) jdbcTemplate.queryForObject(sql, new Object[]
@@ -110,17 +119,19 @@ public class CustomerDAOImpl implements CustomerDAO{
             @Override
             public Student mapRow(ResultSet rs, int rowNum) throws SQLException 
             {
+            	System.out.println("rs"+rs);
             	Student student = new Student();
-            	student.setName(rs.getString(1));
-            	student.setFatherName(rs.getString(2));
-            	student.setRollNo(rs.getString(3));
-            	student.setGender(rs.getString(4));
-            	student.setDateOfBirth(rs.getString(5));
-            	student.setAge(rs.getString(6));
-            	student.setMobileNo(rs.getString(7));
-            	student.setClassName(rs.getString(8));
-            	student.setFee(rs.getString(9));
-            	student.setstudyGroup(rs.getString(7));
+            	student.setStudentId(rs.getString(1));
+            	student.setName(rs.getString(2));
+            	student.setFatherName(rs.getString(3));
+            	student.setRollNo(rs.getString(4));
+            	student.setGender(rs.getString(5));
+            	student.setDateOfBirth(rs.getString(6));
+            	student.setAge(rs.getString(7));
+            	student.setMobileNo(rs.getString(8));
+            	student.setClassName(rs.getString(9));
+            	student.setFee(rs.getString(10));
+            	student.setstudyGroup(rs.getString(11));
                 return student;
             }
         });
@@ -177,5 +188,8 @@ public class CustomerDAOImpl implements CustomerDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 
 }
