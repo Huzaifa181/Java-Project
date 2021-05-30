@@ -234,28 +234,60 @@
                             <br/>
                             <div  class="container ">
                                 <br/>
-                                <h3>All Students: </h3>
+                                <h3>Student: </h3>
                                 <table class="table table-striped">
                                     <thead class="thead-dark"> 
                                         <tr>
                                             <th scope="col">Student Name</th>
+                                            <th scope="col">Father Name</th>
+                                            <th scope="col">Roll No</th>
                                             <th scope="col">Gender</th>
                                             <th scope="col">Date of Birth</th>
-                                            <th scope="col">Mobile</th>
-											<th scope="col">Action</th>
+                                            <th scope="col">Age</th>
+                                            <th scope="col">Mobile No</th>
+                                            <th scope="col">Class</th>
+                                            <th scope="col">Fee</th>
+                                            <th scope="col">Study Group</th>
                                         </tr> 
                                     </thead>
                                     <c:forEach var="std" items="${student}">  
                                         <tr>
                                             <td scope="row">${std.name}</td>
+                                            <td>${std.fatherName}</td>
+                                            <td>${std.rollNo}</td>
                                             <td>${std.gender}</td>
                                             <td>${std.dateOfBirth}</td>
+                                            <td>${std.age}</td>
                                             <td>${std.mobileNo}</td>
-                                            <td>
-                                             <button type="button" class="btn"> 
-                                                    <a href="/CinemaProject/studentDetail/${std.studentId}"> Details </a>
-                                                </button>
-                                            </td>
+                                            <td>${std.className}</td>
+                                            <td>${std.fee}</td>
+                                            <td>${std.studyGroup}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                                <br/>
+                                <h3>Teacher: </h3>
+                                <table class="table table-striped">
+                                    <thead class="thead-dark"> 
+                                        <tr>
+                                            <th scope="col">Teacher Name</th>
+		                                    <th scope="col">Mobile No</th>
+		                                    <th scope="col">Email</th>
+		                                    <th scope="col">Attendance</th>
+		                                    <th scope="col">Salary</th>
+		                                    <th scope="col">Subject</th>
+		                                    <th scope="col">Class</th>
+                                        </tr> 
+                                    </thead>
+                                    <c:forEach var="tch" items="${teacher}">  
+                                        <tr>
+                                            <td scope="row">${tch.name}</td>
+                                            <td>${tch.number}</td>
+                                            <td>${tch.email}</td>
+                                            <td>${tch.attendance}</td>
+                                            <td>${tch.salary}</td>
+                                            <td>${tch.subject}</td>
+                                            <td>${tch.className}</td>
                                         </tr>
                                     </c:forEach>
                                 </table>

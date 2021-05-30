@@ -10,7 +10,7 @@
         <link href="../css/style.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
 
-                <style>
+        <style>
             * {box-sizing: border-box;}
             ul {list-style-type: none;}
             body {font-family: Verdana, sans-serif;}
@@ -38,13 +38,6 @@
                 float: left;
                 padding-top: 10px;
             }
-.span{
-margin-top:22px!important;
-margin-bottom:22px;
-}
-h5{
-margin-top:22px!important;
-margin-bottom:22px;}
 
             .month .next {
                 float: right;
@@ -102,7 +95,6 @@ margin-bottom:22px;}
         </style>
     </head>
     <body>
- <%--<spring:url value="/logout" var="url_logout"/>--%>
 
         <div class="container">
             <!--nav bar-->
@@ -121,10 +113,11 @@ margin-bottom:22px;}
                             <a class="nav-link" href="#">Link</a>
                         </li>
                     </ul >
+                    <spring:url value="/logout" var="url_logout"/>
                     <form class="form-inline my-2 my-lg-2">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Search</button>
-                        <a class="mr-sm-2" href="login.htm" >Login</a>
+                        <a class="mr-sm-2" href="registration" >Logout</a>
                     </form>
 
 
@@ -133,20 +126,19 @@ margin-bottom:22px;}
             <!--jambutan-->
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">Particular Student</h1>     
+                    <h1 class="display-4">Particular Student</h1>
                 </div>
             </div>
             <!--body-->
             <div class="row">
                 <div class="col-2 col-md-2">
-
-                    <div class="list-group">
-                        <a href="index.htm" class="list-group-item list-group-item-action  ">Home</a>
-                        <a href="aboutus.htm" class="list-group-item list-group-item-action">About us</a>
-                        <a href="#" class="list-group-item list-group-item-action">Contact</a>
-                        <a href="notice_board.htm" class="list-group-item list-group-item-action">Notice</a>
-                        <a href="all_teachers" class="list-group-item list-group-item-action ">Teachers Information</a>
-                        <a href="student_information.htm" class="list-group-item list-group-item-action active ">Students Information</a>
+<div class="list-group">
+                        <a href="/CinemaProject/about" class="list-group-item list-group-item-action">About</a>
+                        <a href="/CinemaProject/classes" class="list-group-item list-group-item-action">Classes</a>                 
+                        <a href="/CinemaProject/teacherHome" class="list-group-item list-group-item-action">Teachers Information</a>
+                        <a href="/CinemaProject/studentHome" class="list-group-item list-group-item-action">Students Information</a>
+                    <a href="/CinemaProject/inputTeacherDetail" class="list-group-item list-group-item-action">Add Teacher</a>
+                        <a href="/CinemaProject/inputStudentDetail" class="list-group-item list-group-item-action">Add Student</a>
                     </div>
                     <!--calender--><br/>
                     <div class="month">      
@@ -205,15 +197,15 @@ margin-bottom:22px;}
                     </ul>
 
                 </div>
-                <div class="col-8 col-sm-12 col-md-8">
+                <div class="col-7 col-sm-12 col-md-7">
                     <div class="row">
                         <div class="col-4">
                             <div class="card text-center">
-                                <div class="card-header">
+                                 <div class="card-header">
                                     Total Student
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="card-title">200</h1>
+                                    <h1 class="card-title">${Tstudent}</h1>
                                 </div>
                                 <div class="card-footer text-muted">
 
@@ -226,102 +218,57 @@ margin-bottom:22px;}
                                     Total Teachers
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="card-title">25</h1>
+                                    <h1 class="card-title">${Tteacher}</h1>
                                 </div>
                                 <div class="card-footer text-muted">
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="card text-center">
-                                <div class="card-header">
-                                    Total Employee
-                                </div>
-                                <div class="card-body">
-                                    <h1 class="card-title">5</h1>
-                                </div>
-                                <div class="card-footer text-muted">
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
-
-                    <div class="row">
-                        <!--<div class="col-1"></div>-->
-                        <div class="col-12">                 
-                            <br/>
-                            <div  class="container row">
+                    <br/>
+                    <div class="container border rounded ">
+                        <form class="form-group">
                                 <br/>
-								<div class="col-6">
-                                <h5 class="modal-title">Student Name </h5>
-                                <span class='span'>${name}</span>
-                                <h5 class="modal-title">Father Name </h5>
-                                <span class='span'>${fName}</span>
-                                <h5 class="modal-title">Roll No </h5>
-                                <span class='span'>${rollNo}</span>
-                                <h5 class="modal-title">Gender </h5>
-                                <span class='span'>${gender}</span>
-                                <h5 class="modal-title">Date Of Birth</h5>
-                                <span class='span'>${dateOfBirth}</span>
-                                <h5 class="modal-title">Age</h5>
-                                <span class='span'>${age}</span>
-                                <h5 class="modal-title">Mobile No</h5>
-                                <span class='span'>${mobileNo}</span>
-                                <h5 class="modal-title">Class</h5>
-                                <span class='span'>${jamat}</span>
-                                <h5 class="modal-title">Fee Status</h5>
-                                <span class='span'>${fee}</span>
-                                <h5 class="modal-title">Study Group</h5>
-                                <span class='span'>${studyGroup}</span>
-                                </div>
-                                <div class="col-6">
-                                <h5 class="modal-title">Submit Fee (If not submitted)</h5>
-                                <form:form method="post" action="/CinemaProject/studentDetail" commandName="submitfee" style="margin-bottom:100px;margin-top:30px;" name="myForm">
-    								<input style="padding-left:10px;margin-bottom:10px;" type="text" path="fee" placeholder="Enter Fee"/>
-								<input style="text-align:center" class="btn btn-lg" type="submit" value="Submit" style="width:60px"/>
-								</form:form>
-								</div>
-                            </div>
-                        </div>
-						
-         </div>
+                                <h6 class="modal-title">Name </h6>
+                                <input class="form-control"  type="text" name="sa_date" value="${name}" disabled="true" /> 
+                                <h6 class="modal-title">Father Name </h6> 
+                                <input class="form-control" type="text" name="s_id" value="${fName}" disabled="true"/> 
+                                <h6 class="modal-title">Roll No</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${rollNo}" disabled="true"/> 
+                                <h6 class="modal-title">Gender</h6> 
+                                <textarea class="form-control" type="text" name="s_id" disabled="true"> ${gender}</textarea> 
+                                <h6 class="modal-title">Date Of Birth</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${dateOfBirth}" disabled="true"/> 
+                                <h6 class="modal-title">Age</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${age}" disabled="true"/>
+                                <h6 class="modal-title">Mobile No</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${mobileNo}" disabled="true"/>
+                                <h6 class="modal-title">Class</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${jamat}" disabled="true"/>
+                                <h6 class="modal-title">Fee Status</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${fee}" disabled="true"/>
+                                <h6 class="modal-title">Study Group</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${studyGroup}" disabled="true"/> 
+                        </form>
+                    </div>
                 </div>
-                
-                
-                <div class="col-2 col-md-2">
+                <div class="col-3 col-md-3">
                     <!--clock-->
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-4">
-                            <canvas  id="canvas" width="150" height="150"
+                            <canvas  id="canvas" width="220" height="220"
                                      style="background-color:#1087dd;">
                             </canvas>
                         </div>
                     </div>
                     <br/>
-                    <!--notice board-->
-                    <button type="button" class="btn btn-secondary btn-lg btn-block">Notice Board</button>
-                    <div class="list-group">
-                        <c:forEach var="notices" items="${nts}">
-                            <a class="list-group-item list-group-item-action ">
-                                <div>
-                                    <h4>&Rrightarrow; ${notices.n_title}</h4>
-                                    <small>Publish Date: ${notices.publish_date}</small>
-                                </div>
-                            </a>
-                        </c:forEach> 
-                        <a class="list-group-item list-group-item-action " href="notice_Board.htm">
-                            <div>
-                                <small style="padding-left:40%">See More..</small>
-                            </div>
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </div>
-       
-                   
         <script>
             var canvas = document.getElementById("canvas");
             var ctx = canvas.getContext("2d");

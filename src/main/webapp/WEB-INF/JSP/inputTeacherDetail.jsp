@@ -3,14 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html>html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="../css/style.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
 
         <style>
@@ -96,9 +93,11 @@
                 .weekdays li, .days li {width: 12.2%;}
             }
         </style>
-
     </head>
     <body>
+
+        <%--<spring:url value="/logout" var="url_logout"/>--%>
+
         <div class="container">
             <!--nav bar-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -109,26 +108,28 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item ">
                             <a class="nav-link" href="index.htm">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
-
-                    </ul>
+                    </ul >
                     <spring:url value="/logout" var="url_logout"/>
-                    <form class="form-inline">
+                    <form class="form-inline my-2 my-lg-2">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 mr-sm-2" type="submit">Search</button>
-                        <a href="${url_logout}" >Logout</a>
+                        <button class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Search</button>
+                        <a class="mr-sm-2" href="registration" >Logout</a>
                     </form>
+
+
                 </div>
             </nav>
             <!--jambutan-->
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h1 class="display-4">Add Teacher</h1>
+                    
                 </div>
             </div>
             <!--body-->
@@ -136,14 +137,12 @@
                 <div class="col-2 col-md-2">
 
                     <div class="list-group">
-                        <a href="adminHome.htm" class="list-group-item list-group-item-action ">Admin Home</a>
-                        <a href="session.htm" class="list-group-item list-group-item-action">Session</a>
-                        <a href="notice.htm" class="list-group-item list-group-item-action">Notice</a>
-                        <a href="subject.htm" class="list-group-item list-group-item-action">Subject</a>                        
-                        <a href="classes.htm" class="list-group-item list-group-item-action">Classes</a>
-                        <a href="teachers.htm" class="list-group-item list-group-item-action active">Teachers Information</a>
-                        <a href="students.htm" class="list-group-item list-group-item-action ">Students Information</a>
-
+                        <a href="/CinemaProject/about" class="list-group-item list-group-item-action">About</a>
+                        <a href="/CinemaProject/classes" class="list-group-item list-group-item-action">Classes</a>                 
+                        <a href="/CinemaProject/teacherHome" class="list-group-item list-group-item-action">Teachers Information</a>
+                        <a href="/CinemaProject/studentHome" class="list-group-item list-group-item-action">Students Information</a>
+                    <a href="/CinemaProject/inputTeacherDetail" class="list-group-item list-group-item-action">Add Teacher</a>
+                        <a href="/CinemaProject/inputStudentDetail" class="list-group-item list-group-item-action">Add Student</a>
                     </div>
                     <!--calender--><br/>
                     <div class="month">      
@@ -152,7 +151,7 @@
                             <li class="next">&#10095;</li>
                             <li>
                                 August<br>
-                                <span style="font-size:13px">2018</span>
+                                <span style="font-size:12px">2018</span>
                             </li>
                         </ul>
                     </div>
@@ -202,7 +201,7 @@
                     </ul>
 
                 </div>
-                <div class="col-7 col-md-7">
+                <div class="col-7 col-sm-12 col-md-7">
                     <div class="row">
                         <div class="col-4">
                             <div class="card text-center">
@@ -210,7 +209,7 @@
                                     Total Student
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="card-title">200</h1>
+                                    <h1 class="card-title">${Tstudent}</h1>
                                 </div>
                                 <div class="card-footer text-muted">
 
@@ -223,136 +222,84 @@
                                     Total Teachers
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="card-title">25</h1>
+                                    <h1 class="card-title">${Tteacher}</h1>
                                 </div>
                                 <div class="card-footer text-muted">
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="card text-center">
-                                <div class="card-header">
-                                    Total Employee
-                                </div>
-                                <div class="card-body">
-                                    <h1 class="card-title">5</h1>
-                                </div>
-                                <div class="card-footer text-muted">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div><br/>
-                    <div class="row">
-                        <!--<div class="col-1"></div>-->
-                        <div class="col-12">
-                            <div class="container border rounded">
-                                <br/>
-                                <h3>Add New Teacher </h3><hr/>
-                                <form class="form-group" method="post" action="teachers.htm" enctype="multipart/form-data">
-
-                                    <label>Teacher Name :</label>
-                                    <input class="form-control" name="t_name" required="required"/><br/>
-
-                                    <label>E-mail:</label>
-                                    <input class="form-control" type="email" name="t_email" required="required"/><br/>
-
-                                    <label >Gender :</label>
-                                    <input type="radio" name="gender" value="Male"/>Male
-                                    <input type="radio" name="gender" value="Female"/>Female
-                                    <br/><br/>                              
-
-                                    <label>Telephone No :</label>
-                                    <input class="form-control" name="p_number" /><br/>
-
-                                    <label>Address :</label>
-                                    <input class="form-control" name="t_address" required="required"/><br/>
-
-                                    <label>Class</label>
-                                    <select class="form-control" name="sub_id" required="required">
-                                        <option value="">Chose Subject</option>
-                                        <c:forEach var="sub" items="${subjects}">
-                                            <option value="${sub.sub_id}">${sub.sub_name}</option>  
-                                        </c:forEach>
-                                    </select>
-                                    <br/>
-
-                                    <label>Join Date :</label>
-                                    <input class="form-control" name="join_date" required="required" id="datepicker"/><br/>
-
-                                    <label>Photo :</label>
-                                    <input class="form-control" type="file" name="t_img" required="required"/><br/>
-
-                                    <input class="btn-lg active primary" type="submit"/>
-
-                                </form>
-                            </div>
-
-                           <div>
-                        <br/>
-                        <h3>All Teacher </h3>
-                        <table class="table table-striped">
-                            <thead class="thead-dark"> 
-                                <tr>
-                                    <th scope="col">Teacher Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Mobile No</th>
-                                    <th scope="col">Address</th>
-                                    <th ></th>
-                                </tr> 
-                            </thead>
-                            <c:forEach var="tcr" items="${teachers}">  
-                                <tr>
-                                    <td scope="row">${tcr.t_name}</td>
-                                    <td>${tcr.t_email}</td>
-                                    <td>${tcr.phone_number}</td>
-                                    <td>${tcr.address}</td>
-                                    <td>
-                                        <button type="button" class="btn"> 
-                                            <a href="/OnlineSchoolManagementSystem/teacher_detail.htm?t_id=${tcr.t_id}"> Details </a>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </table>        
-
+                        
                     </div>
-                        </div>
+                    <br/>
+                    <div class="container border rounded ">
+                        <form:form method="post" action="/CinemaProject/inputTeacherDetail" commandName="teacher">
+	<div class="table-responsive">
+		<table class="table" style="width: 300px; margin:0px auto; border:none">
+				<tr style="display:flex;align-items:center">
+				<label>
+				<td style="display:flex;align-items:center; width:120px">Name: </td>
+				<td><form:input type="text" path="name" placeholder="Enter Teacher Name" style="height:35px;width:200px"/></td>
+				</label>
+			</tr>
+			<tr style="display:flex;align-items:center">
+				<label>
+				<td style="display:flex;align-items:center; width:120px">Email: </td>
+				<td><form:input type="text" path="email" placeholder="Enter Email" style="height:35px;width:200px"/></td>
+				</label>
+			</tr>
+			<tr style="display:flex;align-items:center">
+				<label>
+				<td style="display:flex;align-items:center; width:120px">Number: </td>
+				<td><form:input type="text" path="number" placeholder="Enter Number" style="height:35px;width:200px"/></td>
+				</label>
+			</tr>
+			<tr style="display:flex;align-items:center">
+			<label>	
+				<td style="display:flex;align-items:center; width:120px">Attendance :</td>
+				<td><form:input type="text" path="attendance" placeholder="Enter Attendance" style="height:35px;width:200px" /></td>
+</label>
+			</tr>
+			<tr style="display:flex;align-items:center">
+			<label>	
+				<td style="display:flex;align-items:center; width:120px">Salary :</td>
+				<td><form:input type="text" path="salary" placeholder="Enter Salary" style="height:35px;width:200px" /></td>
+</label>
+			</tr>
+			<tr style="display:flex;align-items:center">
+			<label>	
+				<td style="display:flex;align-items:center; width:120px">Subject</td>
+				<td><form:input type="text" path="subject" placeholder="Enter Subject" style="height:35px;width:200px" /></td>
+</label>
+			</tr>
+			<tr style="display:flex;align-items:center">
+			<label>	
+				<td style="display:flex;align-items:center; width:120px">Class</td>
+				<td><form:input type="text" path="className" placeholder="Enter Class" style="height:35px;width:200px" /></td>
+</label>
+			</tr>
 
+			<tr style="display:flex;align-item:center; margin: 0px auto">
+				<td style="margin: 0px auto"><input style="text-align:center" class="btn btn-lg" type="submit" value="Add Teacher" style="width:60px"/></td>
+			</tr>
+		</table>
+		</div>
+	</form:form>
                     </div>
 
                 </div>
                 <div class="col-3 col-md-3">
                     <!--clock-->
                     <div class="row">
-                        <div class="container">
-                            <!--<div class="col-2"></div>-->
-                            <div class="col-6">
-                                <canvas  id="canvas" width="220" height="220"
-                                         style="background-color:#1087dd;">
-                                </canvas>
-                            </div>
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <canvas  id="canvas" width="220" height="220"
+                                     style="background-color:#1087dd;">
+                            </canvas>
                         </div>
                     </div>
                     <br/>
-                    <!--notice board-->
-                    <button type="button" class="btn btn-secondary btn-lg btn-block">Notice Board</button>
-                    <div class="list-group">
-                        <c:forEach var="notices" items="${nts}">
-                            <a class="list-group-item list-group-item-action ">
-                                <div>
-                                    <h4>&Rrightarrow; ${notices.n_title}</h4>
-                                    <small>Publish Date: ${notices.publish_date}</small>
-                                </div>
-                            </a>
-                        </c:forEach> 
-                        <a class="list-group-item list-group-item-action " href="notice.htm">
-                            <div>
-                                <small style="padding-left: 50%">See More..</small>
-                            </div>
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -437,11 +384,5 @@
                 ctx.rotate(-pos);
             }
         </script>
-        <script>
-            $(function () {
-                $("#datepicker").datepicker();
-            });
-        </script>
-
     </body>
 </html>

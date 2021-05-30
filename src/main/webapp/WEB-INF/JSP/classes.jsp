@@ -96,8 +96,6 @@
     </head>
     <body>
 
-        <%--<spring:url value="/logout" var="url_logout"/>--%>
-
         <div class="container">
             <!--nav bar-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -115,24 +113,27 @@
                             <a class="nav-link" href="#">Link</a>
                         </li>
                     </ul >
+                    <spring:url value="/logout" var="url_logout"/>
                     <form class="form-inline my-2 my-lg-2">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Search</button>
                         <a class="mr-sm-2" href="registration" >Logout</a>
                     </form>
+
+
                 </div>
             </nav>
             <!--jambutan-->
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">All Students</h1>
-                    
+                    <h1 class="display-4">Particular Student</h1>
                 </div>
             </div>
             <!--body-->
             <div class="row">
                 <div class="col-2 col-md-2">
-<div class="list-group">
+
+                    <div class="list-group">
                         <a href="/CinemaProject/about" class="list-group-item list-group-item-action">About</a>
                         <a href="/CinemaProject/classes" class="list-group-item list-group-item-action">Classes</a>                 
                         <a href="/CinemaProject/teacherHome" class="list-group-item list-group-item-action">Teachers Information</a>
@@ -197,7 +198,7 @@
                     </ul>
 
                 </div>
-                <div class="col-8 col-sm-12 col-md-8">
+                <div class="col-7 col-sm-12 col-md-7">
                     <div class="row">
                         <div class="col-4">
                             <div class="card text-center">
@@ -227,51 +228,75 @@
                         </div>
                         
                     </div>
-
-                    <div class="row">
-                        <!--<div class="col-1"></div>-->
-                        <div class="col-12">                          
-                            <br/>
-                            <div  class="container ">
-                                <br/>
-                                <h3>All Students: </h3>
-                                <table class="table table-striped">
-                                    <thead class="thead-dark"> 
+                    <br/>
+                    <div class="container border rounded">
+                                <h1>All Classes</h1>
+                                <table class="table">
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Class Name</th>
+                                        <th></th>
+                                    </tr>    
+                                                
                                         <tr>
-                                            <th scope="col">Student Name</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Date of Birth</th>
-                                            <th scope="col">Mobile</th>
-											<th scope="col">Action</th>
-                                        </tr> 
-                                    </thead>
-                                    <c:forEach var="std" items="${student}">  
-                                        <tr>
-                                            <td scope="row">${std.name}</td>
-                                            <td>${std.gender}</td>
-                                            <td>${std.dateOfBirth}</td>
-                                            <td>${std.mobileNo}</td>
-                                            <td>
-                                             <button type="button" class="btn"> 
-                                                    <a href="/CinemaProject/studentDetail/${std.studentId}"> Details </a>
-                                                </button>
-                                            </td>
+                                            <td>1.</td>
+                                            <td><a href="/CinemaProject/classes/I">I</a></td>
                                         </tr>
-                                    </c:forEach>
+                                      
+                                        <tr>
+                                            <td>2.</td>
+                                            <td><a href="/CinemaProject/classes/II">II</a></td>
+                                        </tr>
+                      
+                                        <tr>
+                                            <td>3.</td>
+                                            <td><a href="/CinemaProject/classes/III">III</a></td>
+                                        </tr>
+                                       
+                                        <tr>
+                                            <td>4.</td>
+                                            <td><a href="/CinemaProject/classes/IV">IV</a></td>
+                                        </tr>
+                                       
+                                        <tr>
+                                            <td>5.</td>
+                                            <td><a href="/CinemaProject/classes/V">V</a></td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>6.</td>
+                                            <td><a href="/CinemaProject/classes/VI">VI</a></td>
+                                        </tr>
+                                         
+                                        <tr>
+                                            <td>7.</td>
+                                            <td><a href="/CinemaProject/classes/VII">VII</a></td>
+                                        </tr>
+                                         
+                                        <tr>
+                                            <td>8.</td>
+                                            <td><a href="/CinemaProject/classes/VIII">VIII</a></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>9.</td>
+                                            <td><a href="/CinemaProject/classes/IX">IX</a></td>
+                                        </tr>
+                                  
+                                        <tr>
+                                            <td>10.</td>
+                                            <td><a href="/CinemaProject/classes/I">X</a></td>
+                                        </tr>
+                                        </a> 
                                 </table>
                             </div>
-                        </div>
-
-                    </div>
-
-
                 </div>
-                <div class="col-2 col-md-2">
+                <div class="col-3 col-md-3">
                     <!--clock-->
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-4">
-                            <canvas  id="canvas" width="150" height="150"
+                            <canvas  id="canvas" width="220" height="220"
                                      style="background-color:#1087dd;">
                             </canvas>
                         </div>

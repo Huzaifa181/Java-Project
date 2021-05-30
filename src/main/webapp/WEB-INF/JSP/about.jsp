@@ -125,14 +125,15 @@
             <!--jambutan-->
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">All Students</h1>
+                    <h1 class="display-4">About Us</h1>
                     
                 </div>
             </div>
             <!--body-->
             <div class="row">
                 <div class="col-2 col-md-2">
-<div class="list-group">
+
+                   <div class="list-group">
                         <a href="/CinemaProject/about" class="list-group-item list-group-item-action">About</a>
                         <a href="/CinemaProject/classes" class="list-group-item list-group-item-action">Classes</a>                 
                         <a href="/CinemaProject/teacherHome" class="list-group-item list-group-item-action">Teachers Information</a>
@@ -141,7 +142,7 @@
                         <a href="/CinemaProject/inputStudentDetail" class="list-group-item list-group-item-action">Add Student</a>
                     </div>
                     <!--calender--><br/>
-                    <div class="month">      
+                    <div class="month">
                         <ul>
                             <li class="prev">&#10094;</li>
                             <li class="next">&#10095;</li>
@@ -198,73 +199,19 @@
 
                 </div>
                 <div class="col-8 col-sm-12 col-md-8">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="card text-center">
-                                 <div class="card-header">
-                                    Total Student
-                                </div>
-                                <div class="card-body">
-                                    <h1 class="card-title">${Tstudent}</h1>
-                                </div>
-                                <div class="card-footer text-muted">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card text-center">
-                                <div class="card-header">
-                                    Total Teachers
-                                </div>
-                                <div class="card-body">
-                                    <h1 class="card-title">${Tteacher}</h1>
-                                </div>
-                                <div class="card-footer text-muted">
-
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
+                   
 
                     <div class="row">
-                        <!--<div class="col-1"></div>-->
-                        <div class="col-12">                          
-                            <br/>
-                            <div  class="container ">
-                                <br/>
-                                <h3>All Students: </h3>
-                                <table class="table table-striped">
-                                    <thead class="thead-dark"> 
-                                        <tr>
-                                            <th scope="col">Student Name</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Date of Birth</th>
-                                            <th scope="col">Mobile</th>
-											<th scope="col">Action</th>
-                                        </tr> 
-                                    </thead>
-                                    <c:forEach var="std" items="${student}">  
-                                        <tr>
-                                            <td scope="row">${std.name}</td>
-                                            <td>${std.gender}</td>
-                                            <td>${std.dateOfBirth}</td>
-                                            <td>${std.mobileNo}</td>
-                                            <td>
-                                             <button type="button" class="btn"> 
-                                                    <a href="/CinemaProject/studentDetail/${std.studentId}"> Details </a>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
-                            </div>
-                        </div>
-
+                        <h6 style="display:block; width:100%;font-size:18px">This is our Uni project in java. We are from Sir Syed University of Engineering and Technology. We used JAVA, Maven, MVC, Apache server and MySQL for database in this project. We all get a lot of experienced with it. We are thankful to our great teacher Miss Nudrat who taught us very well and gave a lot of knowledge!.</h6>
+                        <h2 style="display:block; width:100%;margin-top:30px">Group Members:</h2>
+                        <h5 style="display:block; width:100%">Huziafa Ahmed 2019-SE-102</h5>
+                        <h5 style="display:block; width:100%">Samia Syed 2019-SE-058</h5>
+                        <h5 style="display:block; width:100%">Mahrukh Fatima 2019-SE-066</h5>
+                        <h5 style="display:block; width:100%">Ali Hyder 2019-SE-082</h5>
+                        <br/>
+                        <h2 style="display:block; width:100%;margin-top:40px">Our Teacher:</h2>
+                        <h5 style="display:block; width:100%">Eng. Nudrat</h5>
                     </div>
-
-
                 </div>
                 <div class="col-2 col-md-2">
                     <!--clock-->
@@ -277,7 +224,6 @@
                         </div>
                     </div>
                     <br/>
-                    
                 </div>
             </div>
         </div>

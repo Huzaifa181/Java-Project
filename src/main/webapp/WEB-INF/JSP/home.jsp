@@ -114,7 +114,7 @@
                     <form class="form-inline">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 mr-sm-2" type="submit">Search</button>
-                        <a href="${url_logout}" >Logout</a>
+                        <a class="mr-sm-2" href="registration" >Logout</a>
                     </form>
                 </div>
             </nav>
@@ -130,14 +130,12 @@
                 <div class="col-2 col-md-2">
 
                     <div class="list-group">
-                        <a href="adminHome.htm" class="list-group-item list-group-item-action active">Admin Home</a>
-                        <a href="session.htm" class="list-group-item list-group-item-action">Session</a>
-                        <a href="notice.htm" class="list-group-item list-group-item-action">Notice</a>
-                        <a href="subject.htm" class="list-group-item list-group-item-action">Subject</a>                   
-                        <a href="classes.htm" class="list-group-item list-group-item-action">Classes</a>
-                        <a href="teachers.htm" class="list-group-item list-group-item-action">Teachers Information</a>
+                        <a href="/CinemaProject/about" class="list-group-item list-group-item-action">About</a>
+                        <a href="/CinemaProject/classes" class="list-group-item list-group-item-action">Classes</a>                 
+                        <a href="/CinemaProject/teacherHome" class="list-group-item list-group-item-action">Teachers Information</a>
                         <a href="/CinemaProject/studentHome" class="list-group-item list-group-item-action">Students Information</a>
-						<a href="/CinemaProject/studentDetail" class="list-group-item list-group-item-action">Students Detail</a>
+                    <a href="/CinemaProject/inputTeacherDetail" class="list-group-item list-group-item-action">Add Teacher</a>
+                        <a href="/CinemaProject/inputStudentDetail" class="list-group-item list-group-item-action">Add Student</a>
                     </div>
                     
                     <!--calender--><br/>
@@ -205,7 +203,7 @@
                                     Total Student
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="card-title">200</h1>
+                                    <h1 class="card-title">${Tstudent}</h1>
                                 </div>
                                 <div class="card-footer text-muted">
 
@@ -218,7 +216,7 @@
                                     Total Teachers
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="card-title">25</h1>
+                                    <h1 class="card-title">${Tteacher}</h1>
                                 </div>
                                 <div class="card-footer text-muted">
 
@@ -229,18 +227,7 @@
                 </div>
                 
                     <br/>
-                    <!--notice board-->
-                    <button type="button" class="btn btn-secondary btn-lg btn-block">Notice Board</button>
-                    <div class="list-group">
-                        <c:forEach var="notices" items="${nts}">
-                            <a class="list-group-item list-group-item-action ">
-                                <div>
-                                    <h4>&Rrightarrow; ${notices.n_title}</h4>
-                                    <small>Publish Date: ${notices.publish_date}</small>
-                                </div>
-                            </a>
-                        </c:forEach> 
-                    </div>
+                    
                 </div>
             </div>
         </div>

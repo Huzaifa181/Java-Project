@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -125,8 +125,7 @@
             <!--jambutan-->
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">All Students</h1>
-                    
+                    <h1 class="display-4">All Teachers</h1>
                 </div>
             </div>
             <!--body-->
@@ -197,7 +196,7 @@
                     </ul>
 
                 </div>
-                <div class="col-8 col-sm-12 col-md-8">
+                <div class="col-7 col-sm-12 col-md-7">
                     <div class="row">
                         <div class="col-4">
                             <div class="card text-center">
@@ -225,53 +224,44 @@
                                 </div>
                             </div>
                         </div>
-                        
+                       
                     </div>
-
-                    <div class="row">
-                        <!--<div class="col-1"></div>-->
-                        <div class="col-12">                          
-                            <br/>
-                            <div  class="container ">
-                                <br/>
-                                <h3>All Students: </h3>
-                                <table class="table table-striped">
-                                    <thead class="thead-dark"> 
-                                        <tr>
-                                            <th scope="col">Student Name</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Date of Birth</th>
-                                            <th scope="col">Mobile</th>
-											<th scope="col">Action</th>
-                                        </tr> 
-                                    </thead>
-                                    <c:forEach var="std" items="${student}">  
-                                        <tr>
-                                            <td scope="row">${std.name}</td>
-                                            <td>${std.gender}</td>
-                                            <td>${std.dateOfBirth}</td>
-                                            <td>${std.mobileNo}</td>
-                                            <td>
+                    <br/>
+                    <div>
+                        <br/>
+                        <h3>All Teacher </h3>
+                        <table class="table table-striped">
+                            <thead class="thead-dark"> 
+                                <tr>
+                                    <th scope="col">Teacher Name</th>
+                                    <th scope="col">Mobile No</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Action</th>
+                                </tr> 
+                            </thead>
+                            <c:forEach var="tcr" items="${teacher}">  
+                                <tr>
+                                    <td scope="row">${tcr.name}</td>
+                                    <td>${tcr.email}</td>
+                                    <td>${tcr.number}</td>
+                                    <td>
                                              <button type="button" class="btn"> 
-                                                    <a href="/CinemaProject/studentDetail/${std.studentId}"> Details </a>
+                                                    <a href="/CinemaProject/teacherDetail/${tcr.teacherId}"> Details </a>
                                                 </button>
                                             </td>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
-                            </div>
-                        </div>
+                                </tr>
+                            </c:forEach>
+                        </table>        
 
                     </div>
 
-
                 </div>
-                <div class="col-2 col-md-2">
+                <div class="col-3 col-md-3">
                     <!--clock-->
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-4">
-                            <canvas  id="canvas" width="150" height="150"
+                            <canvas  id="canvas" width="220" height="220"
                                      style="background-color:#1087dd;">
                             </canvas>
                         </div>

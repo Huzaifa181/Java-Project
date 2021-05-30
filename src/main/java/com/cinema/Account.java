@@ -1,22 +1,18 @@
 package com.cinema;
 
-public class Account {
-	final String accountNo="PK02MEZN390209090000";
+public final class Account {
+	static final String accountNo="PK02MEZN390209090000";
 	static int price;
+	public Account(int pri) {
+		Account.price=pri;
+	}
 	public String getAccountNo()
     {
         return accountNo;
     }
-    public void setAccountNo(String name)
-    {
-        this.price = price;
-    }
+   
     public int getPrice()
     {
         return price;
-    }
-    public void setPrice(int price)
-    {
-        this.price = price;
     }
 }

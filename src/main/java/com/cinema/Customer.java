@@ -4,17 +4,18 @@ public class Customer {
     private String name;
     private String email;
     private String password;
-    
+    private String type;
     public Customer()
     {
         super();
     }
-    public Customer(String name, String email,  String password)
+    public Customer(String name, String email,  String password, String type)
     {
         super();
         this.name = name;
         this.email = email;
         this.password = password;
+        this.type = type;
     }
     public String getName()
     {
@@ -41,6 +42,14 @@ public class Customer {
     {
         this.password = password;
     }
+    public String getType()
+    {
+        return type;
+    }
+    public void setType(String type)
+    {
+        this.type = type;
+    }
     
     @Override
     public int hashCode()
@@ -50,6 +59,7 @@ public class Customer {
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;
     }
     @Override
@@ -80,11 +90,17 @@ public class Customer {
                 return false;
         } else if (!password.equals(other.password))
             return false;
+        if (type == null)
+        {
+            if (other.type != null)
+                return false;
+        } else if (!type.equals(other.type))
+            return false;
         return true;
     }
     @Override
     public String toString()
     {
-        return "Customer [name=" + name + ", email=" + email + ", password=" + password + "]";
+        return "Customer [name=" + name + ", email=" + email + ", password=" + password +", type=" + type + "]";
     }
 }

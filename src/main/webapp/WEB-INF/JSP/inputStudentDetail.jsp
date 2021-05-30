@@ -119,7 +119,7 @@
                     <form class="form-inline my-2 my-lg-2">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Search</button>
-                        <a href="${url_logout}" >Logout</a>
+                        <a class="mr-sm-2" href="registration" >Logout</a>
                     </form>
 
 
@@ -137,12 +137,12 @@
                 <div class="col-2 col-md-2">
 
                     <div class="list-group">
-                        <a href="studentHome.htm" class="list-group-item list-group-item-action ">Student Home</a>
-                        <a href="notice-Board.htm" class="list-group-item list-group-item-action">Notice Board</a>
-                        <a href=".htm" class="list-group-item list-group-item-action">Search Result</a>
-                        <a href="#" class="list-group-item list-group-item-action">Teachers Information</a>
-                        <a href="students_information.htm" class="list-group-item list-group-item-action active ">Students Information</a>
-
+                        <a href="/CinemaProject/about" class="list-group-item list-group-item-action">About</a>
+                        <a href="/CinemaProject/classes" class="list-group-item list-group-item-action">Classes</a>                 
+                        <a href="/CinemaProject/teacherHome" class="list-group-item list-group-item-action">Teachers Information</a>
+                        <a href="/CinemaProject/studentHome" class="list-group-item list-group-item-action">Students Information</a>
+                    <a href="/CinemaProject/inputTeacherDetail" class="list-group-item list-group-item-action">Add Teacher</a>
+                        <a href="/CinemaProject/inputStudentDetail" class="list-group-item list-group-item-action">Add Student</a>
                     </div>
                     <!--calender--><br/>
                     <div class="month">      
@@ -209,7 +209,7 @@
                                     Total Student
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="card-title">200</h1>
+                                    <h1 class="card-title">${Tstudent}</h1>
                                 </div>
                                 <div class="card-footer text-muted">
 
@@ -222,30 +222,18 @@
                                     Total Teachers
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="card-title">25</h1>
+                                    <h1 class="card-title">${Tteacher}</h1>
                                 </div>
                                 <div class="card-footer text-muted">
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="card text-center">
-                                <div class="card-header">
-                                    Total Employee
-                                </div>
-                                <div class="card-body">
-                                    <h1 class="card-title">5</h1>
-                                </div>
-                                <div class="card-footer text-muted">
-
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <br/>
                     <div class="container border rounded ">
-                        <form:form method="post" action="/CinemaProject/student" commandName="student">
+                        <form:form method="post" action="/CinemaProject/inputStudentDetail" commandName="student">
 	<div class="table-responsive">
 		<table class="table" style="width: 300px; margin:0px auto; border:none">
 			<tr style="display:flex;align-items:center">
@@ -262,7 +250,13 @@
 			</tr>
 			<tr style="display:flex;align-items:center">
 			<label>	
-				<td style="display:flex;align-items:center;  width:120px">Password :</td>
+				<td style="display:flex;align-items:center;  width:120px">Email :</td>
+				<td><form:input type="text" path="email" placeholder="Enter Student Email" style="height:35px;width:200px" /></td>
+</label>
+			</tr>
+			<tr style="display:flex;align-items:center">
+			<label>	
+				<td style="display:flex;align-items:center;  width:120px">Roll No :</td>
 				<td><form:input type="text" path="rollNo" placeholder="Enter Student Roll No" style="height:35px;width:200px" /></td>
 </label>
 			</tr>
@@ -293,7 +287,7 @@
 			<tr style="display:flex;align-items:center">
 			<label>	
 				<td style="display:flex;align-items:center;  width:120px">Class :</td>
-				<td><form:input type="text" path="class" placeholder="Enter Student Class" style="height:35px;width:200px" /></td>
+				<td><form:input type="text" path="className" placeholder="Enter Student Class" style="height:35px;width:200px" /></td>
 </label>
 			</tr>
 			<tr style="display:flex;align-items:center">
@@ -310,7 +304,7 @@
 			</tr>
 			<tr style="display:flex;align-item:center; margin: 0px auto">
 				<td></td>
-				<td style="margin: 0px auto"><input style="text-align:center" class="btn btn-lg" type="submit" value="SignUp" style="width:60px"/></td>
+				<td style="margin: 0px auto"><input style="text-align:center" class="btn btn-lg" type="submit" value="Add Student" style="width:60px"/></td>
 			</tr>
 		</table>
 		</div>
@@ -329,23 +323,7 @@
                         </div>
                     </div>
                     <br/>
-                    <!--notice board-->
-                    <button type="button" class="btn btn-secondary btn-lg btn-block">Notice Board</button>
-                    <div class="list-group">
-                        <c:forEach var="notices" items="${nts}">
-                            <a class="list-group-item list-group-item-action ">
-                                <div>
-                                    <h4>&Rrightarrow; ${notices.n_title}</h4>
-                                    <small>Publish Date: ${notices.publish_date}</small>
-                                </div>
-                            </a>
-                        </c:forEach> 
-                        <a class="list-group-item list-group-item-action " href="notice-Board.htm">
-                            <div>
-                                <small style="padding-left:120px">See More..</small>
-                            </div>
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </div>

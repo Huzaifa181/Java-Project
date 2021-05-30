@@ -36,17 +36,12 @@ margin-bottom:30px;
 <body>
 <div class="main">
 <div class="col-1">
-	<h3>Registration</h3>
+	<h3>Login</h3>
 
-	<form:form method="post" action="/CinemaProject/home" commandName="user">
+	<form:form id="form" method="post" commandName="user">
 	<div class="table-responsive">
 		<table class="table" style="width: 300px; margin:0px auto; border:none">
-			<tr style="display:flex;align-items:center">
-			<label>
-				<td style="display:flex;align-items:center; width:120px">Name :</td>
-				<td><form:input type="text" path="name" placeholder="Enter Your Name" style="height:35px;width:200px"/></td>
-				</label>
-			</tr>
+			
 			<tr style="display:flex;align-items:center">
 				<label>
 				<td style="display:flex;align-items:center;  width:120px">Email :</td>
@@ -59,15 +54,51 @@ margin-bottom:30px;
 				<td><form:input type="password" path="password" placeholder="Enter Your Passsword" style="height:35px;width:200px" /></td>
 </label>
 			</tr>
+			<tr style="display:flex;align-items:center">
+			<label>
+			<td style="display:flex;align-items:center; width:120px">Login As :</td>
+				<td>
+				<form:select  path="type" id="select" onchange="myFunction()">
+				<form:option onclick="myFunction()" value="None"></form:option>
+					<form:option onclick="myFunction()" value="Admin"></form:option>
+					<form:option onclick="myFunction()" value="Student"></form:option>
+					<form:option onclick="myFunction()" value="Teacher"></form:option>
+  					</form:select>
+				</td>
+			</label>
+			</tr>
 			<tr style="display:flex;align-item:center; margin: 0px auto">
-				<td></td>
-				<td style="margin: 0px auto"><input style="text-align:center" class="btn btn-lg" type="submit" value="SignUp" style="width:60px"/></td>
+				<td style="margin: 0px auto"><input style="text-align:center" class="btn btn-lg" type="submit" value="Login" style="width:60px"/></td>
 			</tr>
 		</table>
 		</div>
 	</form:form>
 	</div>
-
+	</div>
 </body>
+<script>
+		var e = document.getElementById("select");
+		if(e.value==="Teacher"){
+			document.getElementById("form").action = "/CinemaProject/teacherDashboard"
+		}
+		else if(e.value==="Student"){
+			document.getElementById("form").action = "/CinemaProject/studentDashboard"
+		}
+		else if(e.value==="Admin"){
+			document.getElementById("form").action = "/CinemaProject/home"
+		}
+		function myFunction(){
+			if(e.value==="Teacher"){
+				document.getElementById("form").action = "/CinemaProject/teacherDashboard"
+			}
+			else if(e.value==="Student"){
+				document.getElementById("form").action = "/CinemaProject/studentDashboard"
+			}
+			else if(e.value==="Admin"){
+				document.getElementById("form").action = "/CinemaProject/home"
+			}
+		}
+		
+ </script> 
 
 </html>

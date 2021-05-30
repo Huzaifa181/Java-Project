@@ -14,6 +14,8 @@
 		<servlet-name>SpringMVC</servlet-name>
 		<url-pattern>/</url-pattern>
 		<url-pattern>/home</url-pattern>
+		<url-pattern>/teacherHome</url-pattern>
+		<url-pattern>/teacherDetail</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

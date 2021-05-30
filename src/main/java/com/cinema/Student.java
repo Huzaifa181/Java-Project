@@ -12,12 +12,13 @@ public class Student {
     private String mobileNo;
     private String className;
     private String fee;
+    private String email;
     private String studyGroup;
     public Student()
     {
         super();
     }
-    public Student(String studentId,String name,String fatherName,String rollNo,String gender,String dateOfBirth, String age,  String mobileNo,  String className,  String fee,  String studyGroup)
+    public Student(String studentId,String name,String fatherName,String rollNo,String gender,String dateOfBirth, String age,  String mobileNo,  String className,  String fee,  String studyGroup,String email)
     {
         super();
         this.studentId=studentId;
@@ -28,6 +29,7 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
         this.age = age;
         this.mobileNo = mobileNo;
+        this.email = email;
         this.className = className;
         this.fee = fee;
         this.studyGroup= studyGroup;
@@ -79,6 +81,14 @@ public class Student {
     public void setDateOfBirth(String dateOfBirth)
     {
         this.dateOfBirth = dateOfBirth;
+    }
+    public String getEmail()
+    {
+        return email;
+    }
+    public void setEmail(String email)
+    {
+        this.email = email;
     }
     public String getAge()
     {

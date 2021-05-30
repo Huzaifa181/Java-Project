@@ -96,8 +96,6 @@
     </head>
     <body>
 
-        <%--<spring:url value="/logout" var="url_logout"/>--%>
-
         <div class="container">
             <!--nav bar-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -115,30 +113,30 @@
                             <a class="nav-link" href="#">Link</a>
                         </li>
                     </ul >
+                    <spring:url value="/logout" var="url_logout"/>
                     <form class="form-inline my-2 my-lg-2">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Search</button>
                         <a class="mr-sm-2" href="registration" >Logout</a>
                     </form>
+
+
                 </div>
             </nav>
             <!--jambutan-->
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">All Students</h1>
-                    
+                    <h1 class="display-4">Student Dashboard</h1>
                 </div>
             </div>
             <!--body-->
             <div class="row">
                 <div class="col-2 col-md-2">
-<div class="list-group">
-                        <a href="/CinemaProject/about" class="list-group-item list-group-item-action">About</a>
-                        <a href="/CinemaProject/classes" class="list-group-item list-group-item-action">Classes</a>                 
-                        <a href="/CinemaProject/teacherHome" class="list-group-item list-group-item-action">Teachers Information</a>
-                        <a href="/CinemaProject/studentHome" class="list-group-item list-group-item-action">Students Information</a>
-                    <a href="/CinemaProject/inputTeacherDetail" class="list-group-item list-group-item-action">Add Teacher</a>
-                        <a href="/CinemaProject/inputStudentDetail" class="list-group-item list-group-item-action">Add Student</a>
+
+                    <div class="list-group">
+                        <a href="/CinemaProject/studentDashboard" class="list-group-item list-group-item-action">Home</a>
+                        <a href="fee" class="list-group-item list-group-item-action">Submit Fee</a>
+
                     </div>
                     <!--calender--><br/>
                     <div class="month">      
@@ -197,81 +195,45 @@
                     </ul>
 
                 </div>
-                <div class="col-8 col-sm-12 col-md-8">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="card text-center">
-                                 <div class="card-header">
-                                    Total Student
-                                </div>
-                                <div class="card-body">
-                                    <h1 class="card-title">${Tstudent}</h1>
-                                </div>
-                                <div class="card-footer text-muted">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card text-center">
-                                <div class="card-header">
-                                    Total Teachers
-                                </div>
-                                <div class="card-body">
-                                    <h1 class="card-title">${Tteacher}</h1>
-                                </div>
-                                <div class="card-footer text-muted">
-
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="row">
-                        <!--<div class="col-1"></div>-->
-                        <div class="col-12">                          
-                            <br/>
-                            <div  class="container ">
+                <div class="col-7 col-sm-12 col-md-7">
+                    <br/>
+                    <div class="container border rounded ">
+                        <form class="form-group">
                                 <br/>
-                                <h3>All Students: </h3>
-                                <table class="table table-striped">
-                                    <thead class="thead-dark"> 
-                                        <tr>
-                                            <th scope="col">Student Name</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Date of Birth</th>
-                                            <th scope="col">Mobile</th>
-											<th scope="col">Action</th>
-                                        </tr> 
-                                    </thead>
-                                    <c:forEach var="std" items="${student}">  
-                                        <tr>
-                                            <td scope="row">${std.name}</td>
-                                            <td>${std.gender}</td>
-                                            <td>${std.dateOfBirth}</td>
-                                            <td>${std.mobileNo}</td>
-                                            <td>
-                                             <button type="button" class="btn"> 
-                                                    <a href="/CinemaProject/studentDetail/${std.studentId}"> Details </a>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
-                            </div>
-                        </div>
-
+                                <h6 class="modal-title">Name </h6>
+                                <input class="form-control"  type="text" name="sa_date" value="${name}" disabled="true" /> 
+                                <h6 class="modal-title">Father Name </h6> 
+                                <input class="form-control" type="text" name="s_id" value="${fName}" disabled="true"/> 
+                                <h6 class="modal-title">Roll No</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${rollNo}" disabled="true"/> 
+                                <h6 class="modal-title">Gender</h6> 
+                                <textarea class="form-control" type="text" name="s_id" disabled="true"> ${gender}</textarea> 
+                                <h6 class="modal-title">Date Of Birth</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${dateOfBirth}" disabled="true"/> 
+                                <h6 class="modal-title">Age</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${age}" disabled="true"/>
+                                <h6 class="modal-title">Mobile No</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${mobileNo}" disabled="true"/>
+                                <h6 class="modal-title">Class</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${jamat}" disabled="true"/>
+                                <h6 class="modal-title">Fee Status</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${fee}" disabled="true"/>
+                                <h6 class="modal-title">Study Group</h6> 
+                                <input class="form-control" type="text" name="s_id" value="${studyGroup}" disabled="true"/> 
+                        </form>
                     </div>
-
-
+                    <h5 class="modal-title">Submit Fee (If not submitted)</h5>
+                                <form:form method="post" action="/CinemaProject/studentHome" commandName="submitfee" style="margin-bottom:100px;margin-top:30px;" name="myForm">
+    								<input style="padding-left:10px;margin-bottom:10px;" type="text" path="fee" placeholder="Enter Fee"/>
+								<input style="text-align:center" class="btn btn-lg" type="submit" value="Submit" style="width:60px"/>
+								</form:form>
                 </div>
-                <div class="col-2 col-md-2">
+                <div class="col-3 col-md-3">
                     <!--clock-->
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-4">
-                            <canvas  id="canvas" width="150" height="150"
+                            <canvas  id="canvas" width="220" height="220"
                                      style="background-color:#1087dd;">
                             </canvas>
                         </div>

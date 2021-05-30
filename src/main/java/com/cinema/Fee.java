@@ -31,32 +31,4 @@ public class Fee{
     {
         this.fee = fee;
     }
-    synchronized void checkAttendance() {
-    	System.out.println("checkAttendance");
-    }
-    synchronized void submitFee() {
-    	System.out.println("submitFee");
-    }
-}
-
-class Thread1 extends Thread{
-	Fee fee=new Fee();
-	Thread1(Fee f){
-		this.fee=f;
-	}
-	public void run() {
-		fee.checkAttendance();
-		System.out.println("Thread1");
-	}
-}
-
-class Thread2 extends Thread{
-	Fee fee=new Fee();
-	Thread2(Fee f){
-		this.fee=f;
-	}
-	public void run() {
-		fee.submitFee();
-		System.out.println("Thread2");
-	}
 }
