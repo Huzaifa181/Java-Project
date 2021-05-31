@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 class GiveTeacherSalary {
 	@Test
 	void test() {
-		Teacher teacher=new Teacher("2","add","II","Huzaifa","03352163311","huzai","100%","90000","Science");
+		Teacher teacher=new Teacher(
+				"2","add","II","Huzaifa","03352163311","huzai","100%","90000","Science");
 		teacher.checkAttendance();
 		CheckAttendanceThread t1=new CheckAttendanceThread(teacher);
     	GiveSalaryThread t2=new GiveSalaryThread(teacher);
@@ -21,7 +22,8 @@ class GiveTeacherSalary {
            System.out.println("Interrupted");
         }
         if(teacher.getMessage().equals("Less Balance in Account")) { 
-     	   AddPriceInAccount t3=new AddPriceInAccount(Integer.parseInt(teacher.getSalary())+10000);
+     	   AddPriceInAccount t3=new AddPriceInAccount(
+     			   Integer.parseInt(teacher.getSalary())+10000);
      	   t3.start();  
      	   try {
               t3.join();

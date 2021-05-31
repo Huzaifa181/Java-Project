@@ -164,13 +164,6 @@ public class SchoolController{
     	model.addAttribute("Tteacher", Total.getTotalTeachers());
     	model.addAttribute("Tstudent", Total.getTotalStudents());
     	teacher.setMessage("Initialize");
-    	teacher.setTeacherId("900");
-    	teacher.setName("Asma");
-    	teacher.setNumber("8948393990");
-    	teacher.setEmail("asma@gmail.com");
-    	teacher.setAttendance("100%");
-    	teacher.setSalary("12000");
-    	teacher.setSubject("Science");
     	CheckAttendanceThread t1=new CheckAttendanceThread(teacher);
     	GiveSalaryThread t2=new GiveSalaryThread(teacher);
         t1.start();
