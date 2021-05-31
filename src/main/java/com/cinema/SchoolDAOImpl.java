@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import java.lang.*;
 @Repository
-public class CustomerDAOImpl implements CustomerDAO{
+public class SchoolDAOImpl implements SchoolDAO{
 	private static final Object StudentID = null;
 	private JdbcTemplate jdbcTemplate;
     // JdbcTemplate setter
@@ -38,51 +38,7 @@ public class CustomerDAOImpl implements CustomerDAO{
         jdbcTemplate.update(sql, new Object[]
          { fee.getFee(),fee.getStudentId()});
     }
-    // Getting a particular Employee
-    public Customer getCustomerById(String email)
-    {
-        String sql = "select * from customer where email=?";
-        Customer customer = (Customer) jdbcTemplate.queryForObject(sql, new Object[]
-        { email }, new RowMapper<Customer>()
-        {
-            @Override
-            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException 
-            {
-            	Customer customer = new Customer();
-            	customer.setName(rs.getString(1));
-            	customer.setPassword(rs.getString(3));
-            	customer.setEmail(rs.getString(2));
-                return customer;
-            }
-        });
-        return customer;
-    }
-
-    // Getting all the Employees
-    public List<Customer> getAllCustomers()
-    {
-        String sql = "select * from customer";
-
-        List<Customer> customerList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Customer>>()
-        {
-            @Override
-            public List<Customer> extractData(ResultSet rs) throws SQLException, DataAccessException
-            {
-                List<Customer> list = new ArrayList<Customer>();
-                while (rs.next())
-                {
-                	Customer customer = new Customer();
-                	customer.setName(rs.getString(1));
-                	customer.setEmail(rs.getString(2));
-                	customer.setPassword(rs.getString(3));
-                    list.add(customer);
-                }
-                return list;
-            }
-        });
-        return customerList;
-    }
-
+  
  // Getting all the Students
     public List<Student> getAllStudents()
     {
@@ -100,8 +56,9 @@ public class CustomerDAOImpl implements CustomerDAO{
                 	student.setStudentId(rs.getString(1));
                 	student.setName(rs.getString(2));
                 	student.setGender(rs.getString(3));
-                	student.setDateOfBirth(rs.getString(4));
-                	student.setMobileNo(rs.getString(5));
+                	student.setDateOfBirth(rs.getString(6));
+                	student.setMobileNo(rs.getString(8));
+                	student.setEmail(rs.getString(12));
                     list.add(student);
                 }
                 return list;
@@ -166,31 +123,6 @@ public class CustomerDAOImpl implements CustomerDAO{
         });
         return student;
     }
-    
-// // Getting teachers By className
-//    public Teacher getTeacherByClass(String className)
-//    {
-//        String sql = "select * from teacher where Class=?";
-//        Teacher teacher = (Teacher) jdbcTemplate.queryForObject(sql, new Object[]
-//        { className }, new RowMapper<Teacher>()
-//        {
-//            @Override
-//            public Teacher mapRow(ResultSet rs, int rowNum) throws SQLException 
-//            {
-//            	System.out.println("rs"+rs);
-//            	Teacher teacher = new Teacher();
-//            	teacher.setTeacherId(rs.getString(1));
-//            	teacher.setName(rs.getString(2));
-//            	teacher.setNumber(rs.getString(3));
-//            	teacher.setEmail(rs.getString(4));
-//            	teacher.setAttendance(rs.getString(5));
-//            	teacher.setSalary(rs.getString(6));
-//            	teacher.setSubject(rs.getString(7));
-//                return teacher;
-//            }
-//        });
-//        return teacher;
-//    }
 
  // Getting all Teacher by ClassName
     public List<Teacher> getTeacherByClass(String className)
@@ -275,21 +207,13 @@ public class CustomerDAOImpl implements CustomerDAO{
             	teacher.setAttendance(rs.getString(5));
             	teacher.setSalary(rs.getString(6));
             	teacher.setSubject(rs.getString(7));
+            	teacher.setClassName(rs.getString(8));
                 return teacher;
             }
         });
         return teacher;
     }
-    
-    // Updating a particular Employee
-    public void updateCustomer(Customer customer)
-    {
-    	
-        String sql = "update customer set name =?, email=?,password=? where email=?";
-        jdbcTemplate.update(sql, new Object[]
-        { customer.getName(), customer.getEmail(), customer.getPassword(), customer.getEmail()}); 
-    }
-    
+
  // Updating a price of Admin Account
     public void savePriceAdminAccount(int price, String mssg)
     {
@@ -338,48 +262,7 @@ public class CustomerDAOImpl implements CustomerDAO{
     	
     }
 
-    // Deletion of a particular Employee
-    public void deleteCustomer(String email)
-    {
-        String sql = "delete from customer where email=?";
-        jdbcTemplate.update(sql, new Object[]
-        { email });
-    }
-    @Override
-	public void insertBollywoodMovies(BollywoodMovies bollywoodMovie) {
-    	MovieFactory movieFactory = new MovieFactory();
-		 //get an object of Circle and call its draw method.
-		 Movies movie = movieFactory.storeMovie("Bollywood");
-		 movie.addMovie(bollywoodMovie.getTitle(), bollywoodMovie.getDescription(), bollywoodMovie.getStartingDate(), bollywoodMovie.getEndingDate(), bollywoodMovie.getTime());
-		
-		String sql = "insert into movies values(?,?,?,?,?,?)";
-        System.out.println("dao called");
-        jdbcTemplate.update(sql, new Object[]
-        { "bollywood", bollywoodMovie.getTitle(), bollywoodMovie.getDescription(), bollywoodMovie.getStartingDate(), bollywoodMovie.getEndingDate(), bollywoodMovie.getTime()});
-	}
-	@Override
-	public void insertHollywoodMovies(HollywoodMovies hollywoodMovie) {
-		MovieFactory movieFactory = new MovieFactory();
-		 //get an object of Circle and call its draw method.
-		 Movies movie = movieFactory.storeMovie("Hollywood");
-		 movie.addMovie(hollywoodMovie.getTitle(), hollywoodMovie.getDescription(), hollywoodMovie.getStartingDate(), hollywoodMovie.getEndingDate(), hollywoodMovie.getTime());
-		String sql = "insert into movies values(?,?,?,?,?,?)";
-        System.out.println("dao called");
-        jdbcTemplate.update(sql, new Object[]
-        { "hollywood", hollywoodMovie.getTitle(), hollywoodMovie.getDescription(), hollywoodMovie.getStartingDate(), hollywoodMovie.getEndingDate(), hollywoodMovie.getTime()});
-	}
 
-	@Override
-	public void saveCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Student loginAsStudent(String email) {

@@ -101,7 +101,7 @@
         <div class="container">
             <!--nav bar-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="index.htm">Navbar</a>
+            
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -109,7 +109,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item ">
-                            <a class="nav-link" href="index.htm">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/CinemaProject/home">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
@@ -241,7 +241,7 @@
                                             <th scope="col">Student Name</th>
                                             <th scope="col">Gender</th>
                                             <th scope="col">Date of Birth</th>
-                                            <th scope="col">Mobile</th>
+                                            <th scope="col">Email</th>
 											<th scope="col">Action</th>
                                         </tr> 
                                     </thead>
@@ -250,7 +250,8 @@
                                             <td scope="row">${std.name}</td>
                                             <td>${std.gender}</td>
                                             <td>${std.dateOfBirth}</td>
-                                            <td>${std.mobileNo}</td>
+                                            <td>${std.email}</td>
+                                            
                                             <td>
                                              <button type="button" class="btn"> 
                                                     <a href="/CinemaProject/studentDetail/${std.studentId}"> Details </a>

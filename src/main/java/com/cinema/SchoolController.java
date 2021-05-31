@@ -12,47 +12,63 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class CustomerController{
+public class SchoolController{
 	@Autowired
-	private CustomerDAO customerDAO;
+	private SchoolDAO schoolDAO;
+	String adminEmail=null;
+	String adminPassword=null;
     @RequestMapping(value = "/home",method={ RequestMethod.GET, RequestMethod.POST })
-    public String saveCustomer(@ModelAttribute("customer") Customer customer,Model model)
+    public String saveCustomer(@ModelAttribute("customer") User user,Model model)
     {
     	try
         {
-    		if(customer.getEmail().equals("admin@gmail.com") && customer.getPassword().equals("admin")) {
-    			List<Student> studentList = customerDAO.getAllStudents();
-        		List<Teacher> teacherList = customerDAO.getAllTeachers();
-            	Total total=new Total(studentList.size(), teacherList.size());
-            	model.addAttribute("Tteacher", Total.getTotalTeachers());
-            	model.addAttribute("Tstudent", Total.getTotalStudents());
+    		List<Student> studentList = schoolDAO.getAllStudents();
+			List<Teacher> teacherList = schoolDAO.getAllTeachers();
+			System.out.println("Teacher List"+teacherList.size());
+			Total total=new Total(studentList.size(), teacherList.size());
+    		System.out.println("AdminEmail"+adminEmail);
+    		System.out.println("User"+user);
+    		System.out.println("Student List Size"+studentList.size());
+    		if(user.getEmail()!=null) {	
+    			System.out.println("UserBock");
+    			if(user.getEmail().equals("admin@gmail.com") && user.getPassword().equals("admin")) {
+    				adminEmail=user.getEmail();
+    				adminPassword=user.getPassword();
+    				model.addAttribute("Tteacher", Total.getTotalTeachers());
+    				model.addAttribute("Tstudent", Total.getTotalStudents());
+    			}
     		}
-    		else
-    		{
-    			return "redirect:/login";
-    		}	
+    		else {			
+    			if(adminEmail.equals("admin@gmail.com") && adminPassword.equals("admin")) {
+    				model.addAttribute("Tteacher", Total.getTotalTeachers());
+    				model.addAttribute("Tstudent", Total.getTotalStudents());
+    			}
+    			else
+    			{
+    				System.out.println("Else block");
+    				return "redirect:/login";
+    			}	
+    		}
         }
         catch(NullPointerException e)
         {
+        	System.out.println("Catch block");
         	return "redirect:/login";
         }
-		return null;
+		return "home";
     	
     }
     String studentId=null;
     String studentEmail=null;
     @RequestMapping(value = "/studentDashboard",method={ RequestMethod.GET, RequestMethod.POST })
-    public String studentDashboard(@ModelAttribute("customer") Customer customer,Model model)
+    public String studentDashboard(@ModelAttribute("user") User user,Model model)
     {
     	try
         {
-        		if(customer.getEmail()==null) {			
-        			Student student=customerDAO.loginAsStudent(studentEmail);
+        		if(user.getEmail()==null) {			
+        			Student student=schoolDAO.loginAsStudent(studentEmail);
         			studentId=student.getStudentId();
-        			System.out.println("NNN"+student.getEmail());
-        			System.out.println("NNN"+studentEmail);
         			studentEmail=student.getEmail();
-        			System.out.println("sttd id"+student.getStudentId());
         			model.addAttribute("id", student.getStudentId());
         			model.addAttribute("name", student.getName());
         			model.addAttribute("fName", student.getFatherName());
@@ -63,17 +79,15 @@ public class CustomerController{
         			model.addAttribute("mobileNo", student.getMobileNo());
         			model.addAttribute("jamat", student.getClassName());
         			model.addAttribute("fee", student.getFee());
+        			model.addAttribute("studyGroup", student.getStudyGroup());
         			model.addAttribute("Tteacher", Total.getTotalTeachers());
         			model.addAttribute("Tstudent", Total.getTotalStudents());
         			return "studentDashboard";
         		}
         		else {
-        			Student student=customerDAO.loginAsStudent(customer.getEmail());
+        			Student student=schoolDAO.loginAsStudent(user.getEmail());
         			studentId=student.getStudentId();
-        			System.out.println("NNjN"+student.getEmail());
-        			System.out.println("NNjN"+studentEmail);
         			studentEmail=student.getEmail();
-        			System.out.println("sttd id"+student.getStudentId());
         			model.addAttribute("id", student.getStudentId());
         			model.addAttribute("name", student.getName());
         			model.addAttribute("fName", student.getFatherName());
@@ -84,6 +98,7 @@ public class CustomerController{
         			model.addAttribute("mobileNo", student.getMobileNo());
         			model.addAttribute("jamat", student.getClassName());
         			model.addAttribute("fee", student.getFee());
+        			model.addAttribute("studyGroup", student.getStudyGroup());
         			model.addAttribute("Tteacher", Total.getTotalTeachers());
         			model.addAttribute("Tstudent", Total.getTotalStudents());
         			return "studentDashboard";
@@ -98,12 +113,12 @@ public class CustomerController{
     String teacherId=null;
     String email=null;
     @RequestMapping(value = "/teacherDashboard",method={ RequestMethod.GET, RequestMethod.POST })
-    public String teacherDashboard(@ModelAttribute("customer") Customer customer,Model model)
+    public String teacherDashboard(@ModelAttribute("user") User user,Model model)
     {
     	try
         {
-    		if(customer.getEmail()==null) {	
-    			Teacher teacher=customerDAO.loginAsTeacher(email);
+    		if(user.getEmail()==null) {	
+    			Teacher teacher=schoolDAO.loginAsTeacher(email);
     			teacherId=teacher.getTeacherId();
     			email=teacher.getEmail();
     			model.addAttribute("name", teacher.getName());
@@ -116,7 +131,7 @@ public class CustomerController{
     			return "teacherDashboard";
     		}
     		else {
-    			Teacher teacher=customerDAO.loginAsTeacher(customer.getEmail());
+    			Teacher teacher=schoolDAO.loginAsTeacher(user.getEmail());
     			teacherId=teacher.getTeacherId();
     			email=teacher.getEmail();
     			model.addAttribute("name", teacher.getName());
@@ -134,84 +149,17 @@ public class CustomerController{
         	return "redirect:/login";
         }
     }
-@RequestMapping(value = "/addBollywoodMovies",method={ RequestMethod.GET, RequestMethod.POST })
-public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bollywoodMovie,Model model)
-{
-	model.addAttribute("movies", bollywoodMovie);
-	AdminUI object = AdminUI.getInstance();
-	object.setBttnAddNewFilm("<a href=\"/CinemaProject/addHollywoodMovies\">Add Hollywood Movies</a><a href=\"/CinemaProject/addBollywoodMovies\">Add Bollywood Movies</a>");
-	object.setBookingLink("<a href=\"/bookings\">Manage Bookings</a>");
-	model.addAttribute("admin", object);
-	model.addAttribute("addBollywoodMovies", bollywoodMovie);
-	if(bollywoodMovie.getTitle()!=null) {
-			customerDAO.insertBollywoodMovies(bollywoodMovie);
-		}
-	return "addBollywoodMovies";
-}
-   
-    @RequestMapping(value = "/viewMovies",method={ RequestMethod.GET, RequestMethod.POST })
-	public String addMovie(@ModelAttribute("customer") Customer customer,Model model) {
-//		AdminUI object = AdminUI.getInstance();
-//    	object.setBttnAddNewFilm("<div  class=\"getStartedBtn\"><a href=\"/CinemaProject/manageFilms\" onClick=\"j\">Add New Film</a></div>");
-//		object.setBookingLink("<a href=\"/bookings\">Manage Bookings</a>");
-		System.out.println("inside admin");
-		customerDAO.saveCustomer(customer);
-		return "viewMovies";
-	}
-    @RequestMapping(value = "/edit/{id}")
-    public ModelAndView editCustomer(@ModelAttribute("customer") Customer customer,@PathVariable("email") String email)
-    {
-        ModelAndView model = new ModelAndView("registration");
-        customer = customerDAO.getCustomerById(email);
-        List<Customer> customerList = customerDAO.getAllCustomers();
-        model.addObject("customer",customer);
-        model.addObject("customerList",customerList);
-        return model;
-    }
-    
-    @RequestMapping(value = "/delete/{id}")
-    public ModelAndView deleteCustomer(@ModelAttribute("customer") Customer customer,@PathVariable("name") String name)
-    {
-    	customerDAO.deleteCustomer(name);
-        return new ModelAndView("redirect:/registration");
-    }
-
-    @RequestMapping(value = "/registration")
-    public ModelAndView listEmployees(@ModelAttribute("user") User user)
-    {
-        ModelAndView model = new ModelAndView("registration");
-        List<User> userList = customerDAO.getAllUsers();
-        System.out.println(userList);
-        model.addObject("userList", userList);
-        return model;
-    }
     @RequestMapping(value = "/login")
     public ModelAndView login(@ModelAttribute("user") User user)
     {
         ModelAndView model = new ModelAndView("login");
         return model;
     }
-    @RequestMapping(value = "/addHollywoodMovies",method={ RequestMethod.GET, RequestMethod.POST })
-    public String manageHollywoodFilms(@ModelAttribute("movies") HollywoodMovies hollywoodMovie,Model model)
-    {
-    	model.addAttribute("movies", hollywoodMovie);
-    	System.out.println(hollywoodMovie.getDescription());
-    	AdminUI object = AdminUI.getInstance();
-    	object.setBttnAddNewFilm("<a href=\"/CinemaProject/addHollywoodMovies\">Add Hollywood Movies</a><a href=\"/CinemaProject/addBollywoodMovies\">Add Bollywood Movies</a>");
-    	object.setBookingLink("<a href=\"/bookings\">Manage Bookings</a>");
-    	model.addAttribute("admin", object);
-    	model.addAttribute("addHollywoodMovies", hollywoodMovie);
-    	if(hollywoodMovie.getTitle()!=null) {
-    		customerDAO.insertHollywoodMovies(hollywoodMovie);
-    	}
-    	
-    	return "addHollywoodMovies";
-    }
-   
+  
     @RequestMapping(value = "/teacherDetail",method={ RequestMethod.POST })
     public String saveSalary(@ModelAttribute("salary") Teacher teacher,Model model)
 {
-    	customerDAO.savePriceAdminAccount(0,"get");
+    	schoolDAO.savePriceAdminAccount(0,"get");
 
     	model.addAttribute("Tteacher", Total.getTotalTeachers());
     	model.addAttribute("Tstudent", Total.getTotalStudents());
@@ -235,28 +183,17 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
         } catch ( Exception e) {
            System.out.println("Interrupted");
         }
-        System.out.println("Less Balance in Account BB");
-        System.out.println(teacher.getMessage());
         if(teacher.getMessage().equals("Less Balance in Account")) { 
-        	System.out.println("Less Balance in Account CC");
      	   AddPriceInAccount t3=new AddPriceInAccount(Integer.parseInt(teacher.getSalary())+10000);
      	   t3.start();  
      	   try {
               t3.join();
-              System.out.println("Silary"+teacher.getSalary());
-              customerDAO.savePriceAdminAccount(Integer.parseInt(teacher.getSalary())+10000,"add");
-              System.out.println("Less Balance in Account F");
-     	   }
+              schoolDAO.savePriceAdminAccount(Integer.parseInt(teacher.getSalary())+10000,"add");     	   }
      	   catch ( Exception e) {
      		   System.out.println("Interruptedd");
      	   }
         }
-        System.out.println("Less Balance in Account C");
-        System.out.println(teacher.getMessage());
-        System.out.println("Opospo");
-        System.out.println("Less Balance in Account C"+Account.price);
-        System.out.println("Less in Account C"+Integer.parseInt(teacher.getSalary()));
-        customerDAO.savePriceAdminAccount(Integer.parseInt(teacher.getSalary()),"give Salary");
+        schoolDAO.savePriceAdminAccount(Integer.parseInt(teacher.getSalary()),"give Salary");
     	return "teacherHome";
     }
     @RequestMapping(value = "/fee")
@@ -268,16 +205,14 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
     @RequestMapping(value = "/fee",method={ RequestMethod.POST })
     public String inputFee(@ModelAttribute("fee") Fee fee,Model model)
     {			
-    	System.out.println("fee"+fee.getFee());
-            	customerDAO.submitFee(fee.getFee());	
+    	schoolDAO.submitFee(fee.getFee());	
             	return "fee";
     }
     @RequestMapping(value = "/studentHome")
     public ModelAndView studentHome(@ModelAttribute("student") Student student)
     {
         ModelAndView model = new ModelAndView("studentHome");
-        List<Student> studentList = customerDAO.getAllStudents();
-        System.out.println(studentList);
+        List<Student> studentList = schoolDAO.getAllStudents();
         model.addObject("student", studentList);
         model.addObject("Tteacher", Total.getTotalTeachers());
         model.addObject("Tstudent", Total.getTotalStudents());
@@ -287,11 +222,9 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
     public ModelAndView teacherHome(@ModelAttribute("teacher") Teacher teacher)
     {
         ModelAndView model = new ModelAndView("teacherHome");
-        List<Teacher> teacherList = customerDAO.getAllTeachers();
-        System.out.println("Teahcerss");
+        List<Teacher> teacherList = schoolDAO.getAllTeachers();
         model.addObject("Tteacher", Total.getTotalTeachers());
         model.addObject("Tstudent", Total.getTotalStudents());
-        System.out.println("Teahcer List"+teacherList);
         model.addObject("teacher", teacherList);
         return model;
     }
@@ -301,10 +234,9 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
     public ModelAndView classDetail(@ModelAttribute("className") Student student,@PathVariable("className") String className)
     {
     	ModelAndView model = new ModelAndView("particularClassInfo");
-        System.out.println(className);
-        List<Student> studentList = customerDAO.getStudentByClass(className);
+        List<Student> studentList = schoolDAO.getStudentByClass(className);
         model.addObject("student", studentList);
-        List<Teacher> teacherList = customerDAO.getTeacherByClass(className);
+        List<Teacher> teacherList = schoolDAO.getTeacherByClass(className);
         model.addObject("teacher", teacherList);
         model.addObject("Tteacher", Total.getTotalTeachers());
         model.addObject("Tstudent", Total.getTotalStudents());
@@ -315,9 +247,7 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
     public ModelAndView studentDetail(@ModelAttribute("submitFee") Student student,@PathVariable("studentId") String studentId)
     {
         ModelAndView model = new ModelAndView("studentDetail");
-        Student studentList = customerDAO.getStudentById(studentId);
-        System.out.println("particular student"+studentList);
-        System.out.println("sttd id"+studentList.getStudentId());
+        Student studentList = schoolDAO.getStudentById(studentId);
         model.addObject("id", studentList.getStudentId());
         model.addObject("name", studentList.getName());
         model.addObject("fName", studentList.getFatherName());
@@ -331,7 +261,6 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
         model.addObject("studyGroup", studentList.getStudyGroup());
         model.addObject("Tteacher", Total.getTotalTeachers());
         model.addObject("Tstudent", Total.getTotalStudents());
-//        customerDAO.saveFee("2", "3444");
         return model;
     }
 
@@ -339,7 +268,7 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
     public ModelAndView teacherDetail(@ModelAttribute("teacher") Teacher teacher,@PathVariable("teacherId") String teacherId)
     {
         ModelAndView model = new ModelAndView("teacherDetail");
-        Teacher teacherList = customerDAO.getTeacherById(teacherId);
+        Teacher teacherList = schoolDAO.getTeacherById(teacherId);
         model.addObject("name", teacherList.getName());
         model.addObject("email", teacherList.getEmail());
         model.addObject("number", teacherList.getNumber());
@@ -362,7 +291,7 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
     @RequestMapping(value = "/inputTeacherDetail",method={ RequestMethod.POST })
     public String inputTeacherDetail(@ModelAttribute("teacher") Teacher teacher,Model model)
     {	
-            	customerDAO.addTeacher(teacher);	
+    			schoolDAO.addTeacher(teacher);	
             	return "inputTeacherDetail";
     }
     @RequestMapping(value = "/inputStudentDetail")
@@ -376,8 +305,7 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
     @RequestMapping(value = "/inputStudentDetail",method={ RequestMethod.POST })
     public String inputStudentDetail(@ModelAttribute("student") Student student,Model model)
     {	
-    	System.out.println("ss"+student.getAge());
-            	customerDAO.addStudent(student);	
+    			schoolDAO.addStudent(student);	
             	return "inputStudentDetail";
     }
 
@@ -400,7 +328,7 @@ public String manageBollywoodFilms(@ModelAttribute("movies") BollywoodMovies bol
     public ModelAndView teacherAttendance()
     {
         ModelAndView model = new ModelAndView("teacherAttendance");
-        Teacher teacher = customerDAO.getTeacherAttendance(teacherId);
+        Teacher teacher = schoolDAO.getTeacherAttendance(teacherId);
         model.addObject("attendance", teacher.getAttendance());
         return model;
     }

@@ -99,7 +99,7 @@
         <div class="container">
             <!--nav bar-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="index.htm">Navbar</a>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -107,7 +107,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item ">
-                            <a class="nav-link" href="index.htm">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/CinemaProject/home">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
@@ -126,7 +126,7 @@
             <!--jambutan-->
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">Particular Student</h1>
+                    <h1 class="display-4">Particular Teacher</h1>
                 </div>
             </div>
             <!--body-->
@@ -249,7 +249,7 @@
                         </form>
                     </div>
                      <h5 class="modal-title">Give Salary</h5>
-                    <form:form style="padding-left:10px;margin-bottom:30px;" commandName="salary" method="post" action="/CinemaProject/teacherDetail">
+                    <form:form style="padding-left:10px;margin-bottom:30px;" commandName="salary" method="post" action="/CinemaProject/teacherHome">
     						<input path="salary"/>
 					</form:form>
                 </div>
